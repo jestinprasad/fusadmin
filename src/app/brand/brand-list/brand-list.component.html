@@ -1,3 +1,79 @@
-<p>
-  brand-list works!
-</p>
+<div class="margin-10">
+  <mat-card>
+    <mat-card-header class="margin-10">
+      <!-- <div mat-card-avatar class="example-header-image"></div> -->
+      <div class="row col-sm-12" style="padding:0">
+        <div class="col-sm-6" style="padding:0;margin:0">
+          <h2>Brand Listing</h2>
+        </div>
+        <div class="col-sm-6">
+          <button mat-button style="background-color:  rgb(63, 81, 181);color: white;margin-left: 50%;margin-top: 22px" routerLink="./create">Create
+            Brand</button>
+        </div>
+
+        <div class="col-sm-12" style="padding:20px;margin-left:-35px;margin-top:0px">
+          <div class="col-sm-4">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Search" value="">
+            </mat-form-field>
+          </div>
+          <div class="col-sm-4" >
+            <mat-form-field style="margin-left: 50px">
+              <mat-select placeholder="Sort by">
+                <mat-option value="name"> Name </mat-option>
+                <mat-option value="email"> Email </mat-option>
+                <mat-option value="phoneNo"> Phone </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-3">
+            <button mat-button style="background-color:  rgb(63, 81, 181);color: white;margin-top: 8px; margin-left: 95px">Apply</button>
+          </div>
+        </div>
+      </div>
+      <!-- <button mat-button>SHARE</button> -->
+      <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <div class="row">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>SL.No</th>
+              <th>Brand Name</th>
+              <th>Barand webURL	</th>
+              <th>GSTIN</th>
+              <th>Brand_Id</th>
+              <th>View</th>
+              <th>Edit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let vendor of vendorList let i = index">
+              <td>{{i+1}}</td>
+              <td>{{vendor.name}}</td>
+              <td>{{vendor.email}}</td>
+              <td>{{vendor.phoneNo}}</td>
+              <td>{{vendor.vendor_id}}</td>
+              <td>
+          <button mat-button style="background-color:  rgb(63, 81, 181);color: white;">View</button>
+              </td>
+              <td>
+          <button mat-button style="background-color:  rgb(63, 81, 181);color: white;">Edit</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-actions>
+      <div>
+        <app-pagination [count]="length" (pageNumber)="assignPageNo($event)" (recordsPerPage)="assignRecordsPerPage($event)"></app-pagination>
+      </div>
+    </mat-card-actions>
+
+  </mat-card>
+</div>
