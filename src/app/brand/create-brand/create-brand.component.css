@@ -1,5 +1,5 @@
 .margin-10{
-    margin: 28px;
+    margin: 32px;
     padding: 0%;
 }
 .example-container {
@@ -10,6 +10,7 @@
   .example-container > * {
     width: 100%;
   }
-  h2{
-    color: #673ab7;
-}
+  h4{
+      color: #673ab7;
+  }
+  
