@@ -37,6 +37,10 @@ const routes: Routes = [
   {
     path: 'offer',
     loadChildren: './offer/offer.module#OfferModule',
+  },
+  {
+    path: 'user',
+    loadChildren: './user/user.module#UserModule',
   }
 ];
 
