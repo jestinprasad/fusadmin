@@ -1,0 +1,18 @@
+.margin-10{
+    margin: 32px;
+    padding: 0%;
+}
+.example-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .example-container > * {
+    width: 100%;
+  }
+  h4{
+      color: #673ab7;
+  }
+  label{
+      font-weight: 100
+  }
