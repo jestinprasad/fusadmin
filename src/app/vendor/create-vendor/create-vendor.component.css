@@ -1,4 +1,15 @@
 .margin-10{
-    margin: 32px;
+    margin: 28px;
     padding: 0%;
+}
+.example-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .example-container > * {
+    width: 100%;
+  }
+  h2{
+    color: #673ab7;
 }

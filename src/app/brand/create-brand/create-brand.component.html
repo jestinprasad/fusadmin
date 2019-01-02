@@ -1,3 +1,220 @@
-<p>
-  create-brand works!
-</p>
+<div class="margin-10">
+  <mat-card style="background-color:#f5f5f5">
+    <mat-card-header class="margin-10">
+      <!-- <div mat-card-avatar class="example-header-image"></div> -->
+      <div class="row col-sm-12" style="padding:0">
+        <div class="col-sm-12 container">
+          <!-- <div class="col-sm-12" style="padding:0;margin:0;background-color:   rgb(63, 81, 181);color:white; text-align: center"> -->
+          <h3 style="color:#3f51b5">Create Brand Form</h3>
+        </div>
+      </div>
+      <!-- <button mat-button>SHARE</button> -->
+      <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+    </mat-card-header>
+    <!-- <mat-divider></mat-divider> -->
+    <mat-card-content>
+      <div>
+        <mat-card style="background-color:white">
+          <mat-card-header>
+            <!-- <div mat-card-avatar class="example-header-image"></div> -->
+            <div class="row col-sm-12" style="padding:0">
+              <div class="col-sm-12 container">
+                <!-- <div class="col-sm-12" style="padding:0;margin:0;background-color:   rgb(63, 81, 181);color:white; text-align: center"> -->
+                <h4>Enter The Brand Details </h4>
+              </div>
+            </div>
+            <!-- <button mat-button>SHARE</button> -->
+            <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+          </mat-card-header>
+          <!-- <mat-divider></mat-divider> -->
+          <mat-card-content>
+            <div class="row">
+              <!-- <form class="example-form"> -->
+              <div class="col-sm-12">
+                <div>
+                  <mat-form-field class="col-sm-4" [hideRequiredMarker]=false [floatLabel]="'auto'">
+                    <input matInput placeholder="Enter Brand Name" required>
+                  </mat-form-field>
+                </div>
+                <div>
+                  <mat-form-field class="col-sm-8">
+                    <input matInput placeholder="Enter Brand webUrl">
+                  </mat-form-field>
+                </div>
+                <div>
+                  <mat-form-field class="col-sm-4">
+                    <mat-select placeholder="Select Category" multiple required>
+                      <mat-option value="topping">cloths</mat-option>
+                      <mat-option value="topping">watches</mat-option>
+                      <mat-option value="topping">pens</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field class="col-sm-4" [hideRequiredMarker]=false [floatLabel]="'auto'">
+                    <input matInput placeholder="Enter GSTIN" required>
+                  </mat-form-field>
+                </div>
+              </div>
+              <!-- </form> -->
+            </div>
+
+          </mat-card-content>
+          <!-- <mat-divider></mat-divider> -->
+          <mat-card-actions>
+
+          </mat-card-actions>
+
+        </mat-card>
+      </div>
+      <!-- <mat-divider></mat-divider> -->
+      <div style="margin-top:15px">
+        <mat-card style="background-color:white">
+          <mat-card-header>
+            <!-- <div mat-card-avatar class="example-header-image"></div> -->
+            <div class="row col-sm-12" style="padding:0">
+              <div class="col-sm-12 container">
+                <!-- <div class="col-sm-12" style="padding:0;margin:0;background-color:   rgb(63, 81, 181);color:white; text-align: center"> -->
+                <h4>Enter The Announcement Details </h4>
+              </div>
+            </div>
+            <!-- <button mat-button>SHARE</button> -->
+            <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+          </mat-card-header>
+          <!-- <mat-divider></mat-divider> -->
+          <mat-card-content>
+            <div class="row">
+              <!-- <form class="example-form"> -->
+              <div class="col-sm-12">
+                <div>
+                  <mat-form-field class="col-sm-12" [hideRequiredMarker]=false [floatLabel]="'auto'">
+                    <input matInput placeholder="Announcement">
+                  </mat-form-field>
+                </div>
+                <div>
+                  <mat-checkbox class="col-sm-4" class="example-margin" [(ngModel)]="checked" color="primary" (change)="checkSchedule()">Scheduled</mat-checkbox>
+                </div>
+                <div *ngIf="isSchedule">
+                  <mat-form-field class="col-sm-4" [hideRequiredMarker]=false [floatLabel]="'auto'">
+                    <input matInput placeholder="Scheduled Start Time">
+                  </mat-form-field>
+                  <mat-form-field class="col-sm-4" [hideRequiredMarker]=false [floatLabel]="'auto'">
+                    <input matInput placeholder="Scheduled End Time">
+                  </mat-form-field>
+                </div>
+              </div>
+              <!-- </form> -->
+            </div>
+
+          </mat-card-content>
+          <!-- <mat-divider></mat-divider> -->
+          <mat-card-actions>
+
+          </mat-card-actions>
+
+        </mat-card>
+      </div>
+      <div style="margin-top:15px">
+        <mat-card style="background-color:white">
+          <mat-card-header>
+            <!-- <div mat-card-avatar class="example-header-image"></div> -->
+            <div class="row col-sm-12" style="padding:0">
+              <div class="col-sm-12 container">
+                <!-- <div class="col-sm-12" style="padding:0;margin:0;background-color:   rgb(63, 81, 181);color:white; text-align: center"> -->
+                <h4>Enter The Address Details </h4>
+              </div>
+            </div>
+            <!-- <button mat-button>SHARE</button> -->
+            <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+          </mat-card-header>
+          <!-- <mat-divider></mat-divider> -->
+          <mat-card-content>
+            <div class="row">
+              <!-- <form class="example-form"> -->
+              <div class="col-sm-12">
+                <div>
+                  <mat-form-field class="col-sm-12" [hideRequiredMarker]=false [floatLabel]="'auto'">
+                    <input matInput placeholder="Enter Brand Head Office Postal Address" required>
+                  </mat-form-field>
+                </div>
+                <br><br>
+                <mat-radio-group class="example-radio-group" [(ngModel)]="exactAddress">
+                  <mat-radio-button class="example-radio-button" color="primary" value="google">
+                    Google Address String
+                  </mat-radio-button>
+                  <mat-radio-button style="margin-left:3px" class="example-radio-button" color="primary" value="latLong">
+                    Lat long
+                  </mat-radio-button>
+                </mat-radio-group>
+                <br>
+                <div *ngIf="exactAddress==='latLong'">
+                  <mat-form-field class="col-sm-5" [hideRequiredMarker]=false [floatLabel]="'auto'">
+                    <input matInput placeholder="Enter Google Latitude" required>
+                  </mat-form-field>
+                  <mat-form-field class="col-sm-5" [hideRequiredMarker]=false [floatLabel]="'auto'">
+                    <input matInput placeholder="Enter Google Longitude" required>
+                  </mat-form-field>
+                </div>
+                <div *ngIf="exactAddress==='google'">
+                  <mat-form-field class="col-sm-12" [hideRequiredMarker]=false [floatLabel]="'auto'">
+                    <input matInput placeholder="Enter Google Resolved Head Office Address" required>
+                  </mat-form-field>
+                </div>
+                <br>
+                <div>
+                  <div class="col-sm-12">
+                    <mat-form-field class="col-sm-3">
+                      <mat-select placeholder="Countries" required>
+                        <mat-option value="topping">India</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="col-sm-3">
+                      <mat-select placeholder="State" required>
+                        <mat-option value="topping">Tamil Nadu</mat-option>
+                        <mat-option value="topping">Andhara</mat-option>
+                        <mat-option value="topping">Karala</mat-option>
+                        <mat-option value="topping">Karnataka</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="col-sm-3">
+                      <mat-select placeholder="City" required>
+                        <mat-option value="topping">Chennai</mat-option>
+                        <mat-option value="topping">Theni</mat-option>
+                        <mat-option value="topping">Thiruvallur</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="col-sm-3" [hideRequiredMarker]=false [floatLabel]="'auto'">
+                      <input matInput placeholder="Enter Pincode" required>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-sm-12"><br><br></div>
+                  <div class="col-sm-12">
+                    <div>
+                      <button mat-button mat-raised-button class="col-sm-5" color="defult" routerLink="../"> CANCLE</button>
+                    </div>
+                    <div class="col-sm-1"></div>
+                    <div>
+                      <button mat-button mat-raised-button class="col-sm-5" color="primary"> SUBMIT</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- </form> -->
+            </div>
+
+          </mat-card-content>
+          <!-- <mat-divider></mat-divider> -->
+          <mat-card-actions>
+
+          </mat-card-actions>
+
+        </mat-card>
+      </div>
+
+
+    </mat-card-content>
+    <!-- <mat-divider></mat-divider> -->
+    <mat-card-actions>
+
+    </mat-card-actions>
+
+  </mat-card>
+</div>

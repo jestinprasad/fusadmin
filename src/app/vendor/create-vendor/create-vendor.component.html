@@ -5,7 +5,7 @@
       <div class="row col-sm-12" style="padding:0">
         <div class="col-sm-12" style="padding:0;margin:0;">
           <!-- <div class="col-sm-12" style="padding:0;margin:0;background-color:   rgb(63, 81, 181);color:white; text-align: center"> -->
-          <h1>Create Vendor</h1>
+          <h2>Create Vendor Form</h2>
         </div>
       </div>
       <!-- <button mat-button>SHARE</button> -->
@@ -16,18 +16,59 @@
       <div class="row">
         <form class="example-form">
           <div class="col-sm-12">
-            <div class="col-sm-6">
-              <mat-form-field class="example-full-width">
-                <input matInput placeholder="Favorite food">
+            <div class="col-sm-4">
+              <mat-form-field [hideRequiredMarker]=false [floatLabel]="'auto'">
+                <input matInput placeholder="Enter Name" required>
               </mat-form-field>
             </div>
-            <div class="col-sm-6">
-              <mat-form-field class="example-full-width">
-                <textarea matInput placeholder="Leave a comment"></textarea>
+            <div class="col-sm-4">
+              <mat-form-field>
+                <input matInput placeholder="Enter Email Address" required>
+              </mat-form-field>
+            </div>
+            <div class="col-sm-4">
+              <mat-form-field [hideRequiredMarker]=false [floatLabel]="'auto'">
+                <input matInput placeholder="Enter Phone Number" required>
               </mat-form-field>
             </div>
           </div>
-          </form>
+          <div class="col-sm-12">
+            <div>
+              <mat-form-field class="col-sm-4">
+                <mat-select placeholder="Select Category" multiple required>
+                  <mat-option value="topping">cloths</mat-option>
+                  <mat-option value="topping">watches</mat-option>
+                  <mat-option value="topping">pens</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field class="col-sm-4">
+                <mat-select placeholder="Select gender" required>
+                  <mat-option value="topping">cloths</mat-option>
+                  <mat-option value="topping">watches</mat-option>
+                  <mat-option value="topping">pens</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div class="col-sm-4">
+              <button mat-button mat-raised-button	 color="primary"  (click)="addBrands()"> + ADD BRANDS</button>
+            </div>
+            <button mat-button mat-raised-button  *ngFor="let nub of numbers let i = index" style="margin:0.5px"	 color="primary"  (click)="addBrands()"> Brand{{nub}} <mat-icon  (click)="removeBrand(i)">cancel</mat-icon> </button>           
+          </div>
+          <div class="col-sm-12"><br></div>
+          <div class="col-sm-12">
+              <div>
+                <button mat-button mat-raised-button  class="col-sm-5" color="defult" routerLink="../"> CANCLE</button>
+              </div>
+              <div class="col-sm-1"></div>
+              <div>
+                  <button mat-button mat-raised-button class="col-sm-5"	 color="primary"> SUBMIT</button>
+                </div>
+            </div>
+        </form>
       </div>
 
     </mat-card-content>

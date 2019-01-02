@@ -6,9 +6,9 @@ import { CreateBrandComponent } from './create-brand/create-brand.component';
 
 
 const routes: Routes = [{
-  path: '', component: BrandListComponent},
-{
-  path: 'createBrand', component:CreateBrandComponent 
+  path: '', component: BrandListComponent
+}, {
+  path: 'create', component: CreateBrandComponent
 }
 ];
 
