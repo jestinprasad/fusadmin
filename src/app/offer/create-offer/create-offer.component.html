@@ -1,0 +1,85 @@
+<div class="margin-10">
+    <mat-card>
+      <mat-card-header class="margin-10">
+        <!-- <div mat-card-avatar class="example-header-image"></div> -->
+        <div class="row col-sm-12" style="padding:0">
+          <div class="col-sm-12 align" style="padding:0;margin:0;">
+            <!-- <div class="col-sm-12" style="padding:0;margin:0;background-color:   rgb(63, 81, 181);color:white; text-align: center"> -->
+            <h2>Create Offer Form</h2>
+          </div>
+        </div>
+        <!-- <button mat-button>SHARE</button> -->
+        <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+      </mat-card-header>
+      <!-- <mat-divider></mat-divider> -->
+      <mat-card-content>
+        <div class="row">
+          <form class="example-form">
+            <div class="col-sm-12">
+              <div>
+                <mat-form-field  class="col-sm-6" [hideRequiredMarker]=false [floatLabel]="'auto'">
+                  <input matInput placeholder="Enter offer name" required>
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field  class="col-sm-6">
+                  <input matInput placeholder="Enter offer description" required>
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field  class="col-sm-6" [hideRequiredMarker]=false [floatLabel]="'auto'">
+                  <input matInput placeholder="Enter Offer Start Date" required>
+                </mat-form-field>
+                <mat-form-field  class="col-sm-6" [hideRequiredMarker]=false [floatLabel]="'auto'">
+                    <input matInput placeholder="Enter Offer End Date" required>
+                  </mat-form-field>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div>
+                <mat-form-field class="col-sm-12">
+                  <mat-select placeholder="Select Category" [(ngModel)]="category" name="category" (change)="showCategory()" multiple required>
+                    <mat-option [value]="'cloths'">cloths</mat-option>
+                    <mat-option [value]="'watches'">watches</mat-option>
+                    <mat-option [value]="'pens'">pens</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field class="col-sm-4">
+                  <mat-select placeholder="Select gender" required>
+                    <mat-option value="topping">cloths</mat-option>
+                    <mat-option value="topping">watches</mat-option>
+                    <mat-option value="topping">pens</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="col-sm-4">
+                <button mat-button mat-raised-button	 color="primary"  (click)="addBrands()"> + ADD BRANDS</button>
+              </div>
+              <button mat-button mat-raised-button  *ngFor="let nub of numbers let i = index" style="margin:0.5px"	 color="primary"  (click)="addBrands()"> Brand{{nub}} <mat-icon  (click)="removeBrand(i)">cancel</mat-icon> </button>           
+            </div>
+            <div class="col-sm-12"><br></div>
+            <div class="col-sm-12">
+                <div>
+                  <button mat-button mat-raised-button  class="col-sm-5" color="defult" routerLink="../"> CANCLE</button>
+                </div>
+                <div class="col-sm-1"></div>
+                <div>
+                    <button mat-button mat-raised-button class="col-sm-5"	 color="primary"> SUBMIT</button>
+                  </div>
+              </div>
+          </form>
+        </div>
+  
+      </mat-card-content>
+      <!-- <mat-divider></mat-divider> -->
+      <mat-card-actions>
+  
+      </mat-card-actions>
+  
+    </mat-card>
+  </div>
+  
