@@ -4,9 +4,8 @@ import { HttpEvent, HttpInterceptor } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { HttpRequest, HttpResponse, HttpErrorResponse, HttpHandler } from '@angular/common/http';
 import { Observable } from 'rxjs';
-// import { map } from 'rxjs/operators/map';
-import 'rxjs/add/operator/map';
-// import 'rxjs/add/operator/catch';
+import { map, catchError } from 'rxjs/operators';
+
 @Injectable()
 export class InterceptorService implements HttpInterceptor {
   constructor(private router: Router, private storageService: StorageService) { }
@@ -29,8 +28,9 @@ export class InterceptorService implements HttpInterceptor {
       });
     }
 
-    return next.handle(tokenAuth)
-      .map((event: HttpEvent<any>) => {
+    // return next.handle(tokenAuth)
+    return next.handle(tokenAuth).pipe(
+      map((event: HttpEvent<any>) => {
         console.log('response', event);
         if (event instanceof HttpResponse) {
           if (event.headers.get('authorization')) {
@@ -38,9 +38,8 @@ export class InterceptorService implements HttpInterceptor {
           }
           return event;
         }
-
-      })
-      .catch((err: HttpEvent<any>) => {
+      }),
+      catchError((err: HttpEvent<any>) => {
         let message: string;
         if (err instanceof HttpErrorResponse) {
           if (err.status === 409 || err.status === 402) {
@@ -66,7 +65,8 @@ export class InterceptorService implements HttpInterceptor {
           }, 3000);
         }
         return Observable.throw(message);
-      });
+      })
+      );
+  }
 
   }
-}
