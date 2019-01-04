@@ -12,6 +12,7 @@ import { MatToolbarModule,
         MatCheckboxModule,
         MatRadioModule} from '@angular/material';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatTabsModule} from '@angular/material/tabs';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PaginationComponent } from '../common/pagination/pagination.component';
 
@@ -32,7 +33,8 @@ import { PaginationComponent } from '../common/pagination/pagination.component';
     MatFormFieldModule,
     MatCheckboxModule,
     MatRadioModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatTabsModule
   ],
   exports: [
     PaginationComponent,
@@ -50,7 +52,8 @@ import { PaginationComponent } from '../common/pagination/pagination.component';
     MatFormFieldModule,
     MatCheckboxModule,
     MatRadioModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatTabsModule
   ]
 })
 export class SharedModule { }

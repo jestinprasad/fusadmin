@@ -41,6 +41,18 @@ const routes: Routes = [
   {
     path: 'user',
     loadChildren: './user/user.module#UserModule',
+  },
+  {
+    path: 'review',
+    loadChildren: './review/review.module#ReviewModule',
+  },
+  {
+    path: 'feedback',
+    loadChildren: './feedback/feedback.module#FeedbackModule',
+  },
+  {
+    path: 'customerRequest',
+    loadChildren: './customer-request/customer-request.module#CustomerRequestModule',
   }
 ];
 
