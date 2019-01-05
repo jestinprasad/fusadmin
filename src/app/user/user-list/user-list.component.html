@@ -46,16 +46,16 @@
                 <th>User Email</th>
                 <th>User_Id</th>
                 <!-- <th>View</th>
-                <th>Edit</th> -->
+                <th>Edit</th> --> 
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let vendor of vendorList let i = index">
                 <td>{{i+1}}</td>
                 <td>{{vendor.name}}</td>
+                <td>{{vendor.phone}}</td>
                 <td>{{vendor.email}}</td>
-                <td>{{vendor.phoneNo}}</td>
-                <td>{{vendor.vendor_id}}</td>
+                <td>{{vendor._id}}</td>
                 <!-- <td>
             <button mat-button>
               <mat-icon>visibility</mat-icon>

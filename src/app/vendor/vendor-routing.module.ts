@@ -9,6 +9,8 @@ const routes: Routes = [{
   path: '', component: VendorListComponent
 }, {
   path: 'create', component: CreateVendorComponent
+}, {
+  path: 'update/:id', component: CreateVendorComponent
 }];
 
 @NgModule({

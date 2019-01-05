@@ -52,13 +52,13 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let vendor of vendorList let i = index">
+              <tr *ngFor="let product of productList let i = index">
                 <td>{{i+1}}</td>
-                <td>{{vendor.name}}</td>
-                <td>{{vendor.email}}</td>
-                <td>{{vendor.phoneNo}}</td>
-                <td>{{vendor.vendor_id}}</td>
-                <td>{{vendor.vendor_id}}</td>                
+                <td>{{product.productName}}</td>
+                <td>{{product.categoryId.displayName}}</td>
+                <td>{{product.brandId.displayName}}</td>
+                <td>{{product.finalCategoryId.displayName}}</td>
+                <td>{{product._id}}</td>                
               </tr>
             </tbody>
           </table>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FusadminService } from 'src/app/fusadmin.service';
 
 @Component({
   selector: 'app-attributes-list',
@@ -7,81 +8,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AttributesListComponent implements OnInit {
 
-  length = 50;
-  vendorList =  [
-    {
-      name: 'balu' ,
-      email: 'balu@gmail.com',
-      phoneNo: 8300187422,
-      vendor_id : 61
-    },
-    {
-      name: 'balu' ,
-      email: 'balu@gmail.com',
-      phoneNo: 8300187422,
-      vendor_id : 61
-    },
-    {
-      name: 'balu' ,
-      email: 'balu@gmail.com',
-      phoneNo: 8300187422,
-      vendor_id : 61
-    },
-    {
-      name: 'balu' ,
-      email: 'balu@gmail.com',
-      phoneNo: 8300187422,
-      vendor_id : 61
-    },
-    {
-      name: 'balu' ,
-      email: 'balu@gmail.com',
-      phoneNo: 8300187422,
-      vendor_id : 61
-    },
-    {
-      name: 'balu' ,
-      email: 'balu@gmail.com',
-      phoneNo: 8300187422,
-      vendor_id : 61
-    },
-    {
-      name: 'balu' ,
-      email: 'balu@gmail.com',
-      phoneNo: 8300187422,
-      vendor_id : 61
-    },
-    {
-      name: 'balu' ,
-      email: 'balu@gmail.com',
-      phoneNo: 8300187422,
-      vendor_id : 61
-    },
-    {
-      name: 'balu' ,
-      email: 'balu@gmail.com',
-      phoneNo: 8300187422,
-      vendor_id : 61
-    },
-    {
-      name: 'balu' ,
-      email: 'balu@gmail.com',
-      phoneNo: 8300187422,
-      vendor_id : 61
-    }
-  ];
-
-  constructor() { }
+  length;
+  attributeList = [];
+  pageNo = 1;
+  perpage = 10;
+  constructor(
+    private fusAdminService: FusadminService
+  ) { }
 
   ngOnInit() {
+    this.getAttributes();
+  }
+  getAttributes() {
+    this.fusAdminService.getAttributes(this.pageNo, this.perpage).subscribe((data: any) => {
+      this.attributeList = data.data.attributes;
+      this.length = data.data.count;
+      console.log(data);
+    });
   }
 
   assignPageNo(pageNo) {
     console.log(pageNo);
+    this.pageNo = pageNo;
+    this.getAttributes();
   }
 
   assignRecordsPerPage(recordsPerPage) {
     console.log(recordsPerPage);
+    this.perpage = recordsPerPage;
+    this.getAttributes();
   }
 
 }

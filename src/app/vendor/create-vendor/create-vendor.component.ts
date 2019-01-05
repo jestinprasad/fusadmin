@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { FusadminService } from '../../fusadmin.service';
 import { CommonService } from '../../common.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-vendor',
@@ -14,22 +15,38 @@ import { CommonService } from '../../common.service';
 export class CreateVendorComponent implements OnInit {
   num: any;
   numbers = [];
-  brands = []
+  brands = [];
   vendorForm: FormGroup;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches)
     );
   categories = [];
+  vendorDetails: any;
+  form: string;
 
   constructor(
     private breakpointObserver: BreakpointObserver,
     private fb: FormBuilder,
     private fusAdminService: FusadminService,
-    private commonService: CommonService
-
+    private commonService: CommonService,
+    private router: ActivatedRoute,
+    private route: Router
   ) {
+    console.log('id', this.router.snapshot.params.id);
+    const id = this.router.snapshot.params.id;
     this.createForm();
+    if (id) {
+      this.form = 'Update';
+      this.fusAdminService.getSingleVendor(id).subscribe((result: any) => {
+        console.log(result);
+        this.vendorDetails = result.data;
+        this.createForm(this.vendorDetails);
+      });
+    } else {
+      this.form = 'Create';
+      this.createForm();
+    }
   }
 
   ngOnInit() {
@@ -39,29 +56,38 @@ export class CreateVendorComponent implements OnInit {
         console.log(data);
       });
     this.commonService.getCategories().subscribe((data: any) => {
-        this.categories = data.data;
-        console.log(data);
+      this.categories = data.data;
+      console.log(data);
     });
   }
-  createForm() {
+  createForm(data?) {
     this.vendorForm = this.fb.group({
-      name: ['', Validators.required],
-      email: ['', Validators.required],
-      phone: ['', Validators.required],
-      gender: ['', Validators.required],
-      categories: ['', Validators.required],
-      brands: ['', Validators.required]
+      name: [data ? data.name : '', Validators.required],
+      email: [data ? data.email : '', Validators.required],
+      phone: [data ? data.phone : '', Validators.required],
+      gender: [data ? data.gender : '', Validators.required],
+      categories: [data ? data.categories : '', Validators.required],
+      brands: [data ? data.brands : '', Validators.required]
     });
   }
 
 
   onSubmit() {
     console.log(this.vendorForm.value);
-
-    this.fusAdminService.createVendor(this.vendorForm.value)
+    if (this.form === 'Create') {
+      this.fusAdminService.createVendor(this.vendorForm.value)
+        .subscribe(data => {
+          console.log('vendor created', data);
+          this.route.navigate(['./..'], {relativeTo: this.router});
+        });
+    } else {
+      this.fusAdminService.updateVendor(this.vendorForm.value, this.router.snapshot.params.id)
       .subscribe(data => {
-        console.log('vendor created', data);
+        console.log('vendor Updated', data);
+        this.route.navigate(['./../..'], {relativeTo: this.router});
       });
+    }
+
   }
 
 
@@ -72,6 +98,6 @@ export class CreateVendorComponent implements OnInit {
   // }
   removeBrand(index) {
     this.vendorForm.get('brands').value.splice(index, 1);
-    console.log(this.vendorForm.get('brands'))
+    console.log(this.vendorForm.get('brands'));
   }
 }

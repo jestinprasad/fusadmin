@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FusadminService } from 'src/app/fusadmin.service';
 
 @Component({
   selector: 'app-brand-list',
@@ -6,79 +7,34 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./brand-list.component.css']
 })
 export class BrandListComponent implements OnInit {
-  length = 50;
-  vendorList =  [
-    {
-      name: 'balu' ,
-      email: 'balu@gmail.com',
-      phoneNo: 8300187422,
-      vendor_id : 61
-    },
-    {
-      name: 'balu' ,
-      email: 'balu@gmail.com',
-      phoneNo: 8300187422,
-      vendor_id : 61
-    },
-    {
-      name: 'balu' ,
-      email: 'balu@gmail.com',
-      phoneNo: 8300187422,
-      vendor_id : 61
-    },
-    {
-      name: 'balu' ,
-      email: 'balu@gmail.com',
-      phoneNo: 8300187422,
-      vendor_id : 61
-    },
-    {
-      name: 'balu' ,
-      email: 'balu@gmail.com',
-      phoneNo: 8300187422,
-      vendor_id : 61
-    },
-    {
-      name: 'balu' ,
-      email: 'balu@gmail.com',
-      phoneNo: 8300187422,
-      vendor_id : 61
-    },
-    {
-      name: 'balu' ,
-      email: 'balu@gmail.com',
-      phoneNo: 8300187422,
-      vendor_id : 61
-    },
-    {
-      name: 'balu' ,
-      email: 'balu@gmail.com',
-      phoneNo: 8300187422,
-      vendor_id : 61
-    },
-    {
-      name: 'balu' ,
-      email: 'balu@gmail.com',
-      phoneNo: 8300187422,
-      vendor_id : 61
-    },
-    {
-      name: 'balu' ,
-      email: 'balu@gmail.com',
-      phoneNo: 8300187422,
-      vendor_id : 61
-    }
-  ];
-  constructor() { }
+  length;
+  brandList = [];
+  pageNo = 1;
+  perpage = 10;
+  constructor(
+    private fusAdminService: FusadminService
+  ) { }
 
   ngOnInit() {
+    this.getBrands();
+  }
+  getBrands() {
+    this.fusAdminService.getBrands(this.pageNo, this.perpage).subscribe((data: any) => {
+      this.brandList = data.data.brands;
+      this.length = data.data.count;
+      console.log(data);
+    });
   }
 
   assignPageNo(pageNo) {
     console.log(pageNo);
+    this.pageNo = pageNo;
+    this.getBrands();
   }
 
   assignRecordsPerPage(recordsPerPage) {
     console.log(recordsPerPage);
+    this.perpage = recordsPerPage;
+    this.getBrands();
   }
 }

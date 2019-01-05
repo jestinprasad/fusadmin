@@ -50,12 +50,12 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let vendor of vendorList let i = index">
+            <tr *ngFor="let brand of brandList let i = index">
               <td>{{i+1}}</td>
-              <td>{{vendor.name}}</td>
-              <td>{{vendor.email}}</td>
-              <td>{{vendor.phoneNo}}</td>
-              <td>{{vendor.vendor_id}}</td>
+              <td>{{brand.displayName}}</td>
+              <td>{{brand.webUrl}}</td>
+              <td>{{brand.gstin}}</td>
+              <td>{{brand._id}}</td>
               <td>
           <button mat-button>
             <mat-icon>visibility</mat-icon>

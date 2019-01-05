@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FusadminService } from 'src/app/fusadmin.service';
 
 @Component({
   selector: 'app-user-list',
@@ -7,81 +8,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserListComponent implements OnInit {
 
-  length = 50;
-  vendorList =  [
-    {
-      name: 'balu' ,
-      email: 'balu@gmail.com',
-      phoneNo: 8300187422,
-      vendor_id : 61
-    },
-    {
-      name: 'balu' ,
-      email: 'balu@gmail.com',
-      phoneNo: 8300187422,
-      vendor_id : 61
-    },
-    {
-      name: 'balu' ,
-      email: 'balu@gmail.com',
-      phoneNo: 8300187422,
-      vendor_id : 61
-    },
-    {
-      name: 'balu' ,
-      email: 'balu@gmail.com',
-      phoneNo: 8300187422,
-      vendor_id : 61
-    },
-    {
-      name: 'balu' ,
-      email: 'balu@gmail.com',
-      phoneNo: 8300187422,
-      vendor_id : 61
-    },
-    {
-      name: 'balu' ,
-      email: 'balu@gmail.com',
-      phoneNo: 8300187422,
-      vendor_id : 61
-    },
-    {
-      name: 'balu' ,
-      email: 'balu@gmail.com',
-      phoneNo: 8300187422,
-      vendor_id : 61
-    },
-    {
-      name: 'balu' ,
-      email: 'balu@gmail.com',
-      phoneNo: 8300187422,
-      vendor_id : 61
-    },
-    {
-      name: 'balu' ,
-      email: 'balu@gmail.com',
-      phoneNo: 8300187422,
-      vendor_id : 61
-    },
-    {
-      name: 'balu' ,
-      email: 'balu@gmail.com',
-      phoneNo: 8300187422,
-      vendor_id : 61
-    }
-  ];
+  length;
+  vendorList = [];
+  pageNo = 1;
+  perpage = 10;
 
-  constructor() { }
+  constructor(
+    private fusAdminService: FusadminService
+
+  ) { }
 
   ngOnInit() {
+    this.getUsers();
+  }
+  getUsers() {
+    this.fusAdminService.getUsers(this.pageNo, this.perpage).subscribe((data: any) => {
+      this.vendorList = data.data.customers;
+      this.length = data.data.count;
+      console.log(data);
+    });
   }
 
   assignPageNo(pageNo) {
     console.log(pageNo);
+    this.pageNo = pageNo;
+    this.getUsers();
   }
 
   assignRecordsPerPage(recordsPerPage) {
     console.log(recordsPerPage);
+    this.perpage = recordsPerPage;
+    this.getUsers();
   }
 
 }
