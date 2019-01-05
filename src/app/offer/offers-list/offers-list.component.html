@@ -51,18 +51,18 @@
                 <th>Offer Validity From</th>
                 <th>Offer Validity To</th> 
                 <th>Offer_Id</th>    
-                <th>Action</th>
+                <th> </th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let vendor of vendorList let i = index">
+              <tr *ngFor="let offer of offerList let i = index">
                 <td>{{i+1}}</td>
-                <td>{{vendor.name}}</td>
-                <td>{{vendor.email}}</td>
-                <td>{{vendor.phoneNo}}</td>
-                <td>{{vendor.vendor_id}}</td>
-                <td>{{vendor.vendor_id}}</td>
-                <td>{{vendor.vendor_id}}</td>   
+                <td>{{offer.offerTitle}}</td>
+                <td>{{offer.offerDesc}}</td>
+                <td>{{offer.termsAndConditions}}</td>
+                <td>{{offer.offer_Valididty.fromTime}}</td>
+                <td>{{offer.offer_Valididty.toTime}}</td>
+                <td>{{offer._id}}</td>   
                 <td>
                     <button mat-button>
                         <mat-icon>cloud_upload</mat-icon>
