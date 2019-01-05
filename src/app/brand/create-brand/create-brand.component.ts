@@ -15,4 +15,7 @@ export class CreateBrandComponent implements OnInit {
   checkSchedule() {
     this.isSchedule = !this.isSchedule;
   }
+  autoCompleteCallback1(data) {
+    console.log(data);
+  }
 }

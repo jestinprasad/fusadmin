@@ -154,9 +154,10 @@
                   </mat-form-field>
                 </div>
                 <div *ngIf="exactAddress==='google'">
-                  <mat-form-field class="col-sm-12" [hideRequiredMarker]=false [floatLabel]="'auto'">
+                    <ngxgeo-autocomplete  (componentCallback)="autoCompleteCallback1($event)"></ngxgeo-autocomplete>
+                  <!-- <mat-form-field class="col-sm-12" [hideRequiredMarker]=false [floatLabel]="'auto'">
                     <input matInput placeholder="Enter Google Resolved Head Office Address" required>
-                  </mat-form-field>
+                  </mat-form-field> -->
                 </div>
                 <br>
                 <div>

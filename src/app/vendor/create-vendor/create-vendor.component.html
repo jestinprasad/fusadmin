@@ -3,7 +3,7 @@
     <mat-card-header class="margin-10">
       <!-- <div mat-card-avatar class="example-header-image"></div> -->
       <div class="row col-sm-12" style="padding:0">
-        <div class="col-sm-12" style="padding:0;margin:0;">
+        <div class="col-sm-12" style="padding:0;margin:0;text-align: center">
           <!-- <div class="col-sm-12" style="padding:0;margin:0;background-color:   rgb(63, 81, 181);color:white; text-align: center"> -->
           <h2>Create Vendor Form</h2>
         </div>
@@ -37,8 +37,7 @@
               </div>
               <mat-form-field class="col-sm-4">
                 <mat-select formControlName="categories" placeholder="Select Category" multiple>
-                  <mat-option value="cloths">cloths and materials</mat-option>
-                  <mat-option value="groceries">Groceries</mat-option>
+                    <mat-option  *ngFor="let cat of categories" [value]="brand">{{cat.displayName}}</mat-option>                
                 </mat-select>
               </mat-form-field>
             </div>
@@ -55,17 +54,13 @@
           <div class="col-sm-12">
               <mat-form-field class="col-sm-4">
                   <mat-select formControlName="brands"  placeholder="Add Brands" multiple>
-                    <mat-option value="1">Cloths</mat-option>
-                    <mat-option value="2">Groceries</mat-option>
-                    <mat-option value="3"> Materials</mat-option>
-                    <mat-option value="4">Shirts</mat-option>
-                    <mat-option value="5">Pants</mat-option>                    
+                    <mat-option  *ngFor="let brand of brands" [value]="brand">{{brand.displayName}}</mat-option>                
                   </mat-select>
                 </mat-form-field>
             <!-- <div class="col-sm-4">
               <button mat-button mat-raised-button	 color="primary"  (click)="addBrands()"> + ADD BRANDS</button>
             </div> -->
-            <button mat-button mat-raised-button  *ngFor="let brand of vendorForm.get('brands').value let i = index" style="margin:0.5px"	 color="primary"  (click)="addBrands()"> Brand{{brand}} <mat-icon  (click)="removeBrand(i)">cancel</mat-icon> </button>
+            <button mat-button mat-raised-button  *ngFor="let brand of vendorForm.get('brands').value let i = index" style="margin:0.5px"	 color="primary"  (click)="addBrands()"> {{brand.displayName}} <mat-icon  (click)="removeBrand(i)">cancel</mat-icon> </button>
           </div>
           <div class="col-sm-12"><br></div>
           <div class="col-sm-12">

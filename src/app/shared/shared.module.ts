@@ -15,6 +15,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatTabsModule} from '@angular/material/tabs';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PaginationComponent } from '../common/pagination/pagination.component';
+import { NgxGeoautocompleteModule } from 'ngx-geoautocomplete';
 
 @NgModule({
   declarations: [PaginationComponent],
@@ -34,7 +35,9 @@ import { PaginationComponent } from '../common/pagination/pagination.component';
     MatCheckboxModule,
     MatRadioModule,
     MatExpansionModule,
-    MatTabsModule
+    MatTabsModule,
+    NgxGeoautocompleteModule.forRoot(),
+
   ],
   exports: [
     PaginationComponent,
@@ -53,7 +56,8 @@ import { PaginationComponent } from '../common/pagination/pagination.component';
     MatCheckboxModule,
     MatRadioModule,
     MatExpansionModule,
-    MatTabsModule
+    MatTabsModule,
+    NgxGeoautocompleteModule
   ]
 })
 export class SharedModule { }
