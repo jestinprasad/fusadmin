@@ -7,25 +7,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomerRequestListComponent implements OnInit {
 
-  status;
+  status: any;
 
   constructor() { }
 
   ngOnInit() {
-    
-      }
+    this.status="pending";
+  }
 
-      pending(data){
-        this.status = 'pending';
-        console.log("pending");
-      }
-      inStock(){
-        this.status = 'instock';
-        console.log("instock");
-      }
-      outOfStock(){
-        this.status = 'outofstock';
-        console.log("outofstock");
-      }
+  pending(data) {
+    this.status = data;
+    console.log(this.status);
+  }
+  inStock(data) {
+    this.status = data;
+    console.log(this.status);
+  }
+  outOfStock(data) {
+    this.status = data;
+  }
 
 }

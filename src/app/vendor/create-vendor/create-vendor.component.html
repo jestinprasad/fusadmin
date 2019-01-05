@@ -14,49 +14,58 @@
     <!-- <mat-divider></mat-divider> -->
     <mat-card-content>
       <div class="row">
-        <form class="example-form">
+        <form class="example-form" [formGroup]="vendorForm" (ngSubmit)="onSubmit()">
           <div class="col-sm-12">
-            <div class="col-sm-4">
-              <mat-form-field [hideRequiredMarker]=false [floatLabel]="'auto'">
-                <input matInput placeholder="Enter Name" required>
+            <div>
+              <mat-form-field  class="col-sm-6" [hideRequiredMarker]=false [floatLabel]="'auto'">
+                <input matInput formControlName="name" placeholder="Enter Name" required>
               </mat-form-field>
             </div>
-            <div class="col-sm-4">
-              <mat-form-field>
-                <input matInput placeholder="Enter Email Address" required>
-              </mat-form-field>
-            </div>
-            <div class="col-sm-4">
-              <mat-form-field [hideRequiredMarker]=false [floatLabel]="'auto'">
-                <input matInput placeholder="Enter Phone Number" required>
+            <div>
+              <mat-form-field  class="col-sm-6">
+                <input matInput formControlName="email" placeholder="Enter Email Address" required>
               </mat-form-field>
             </div>
           </div>
           <div class="col-sm-12">
             <div>
+
+            <div>
+                <mat-form-field class="col-sm-4" [hideRequiredMarker]=false [floatLabel]="'auto'">
+                  <input matInput formControlName="phone" placeholder="Enter Phone Number" required>
+                </mat-form-field>
+              </div>
               <mat-form-field class="col-sm-4">
-                <mat-select placeholder="Select Category" multiple required>
-                  <mat-option value="topping">cloths</mat-option>
-                  <mat-option value="topping">watches</mat-option>
-                  <mat-option value="topping">pens</mat-option>
+                <mat-select formControlName="categories" placeholder="Select Category" multiple>
+                  <mat-option value="cloths">cloths and materials</mat-option>
+                  <mat-option value="groceries">Groceries</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
             <div>
               <mat-form-field class="col-sm-4">
-                <mat-select placeholder="Select gender" required>
-                  <mat-option value="topping">cloths</mat-option>
-                  <mat-option value="topping">watches</mat-option>
-                  <mat-option value="topping">pens</mat-option>
+                <mat-select formControlName="gender" placeholder="Select gender">
+                  <mat-option value="male">male</mat-option>
+                  <mat-option value="female">female</mat-option>
+                  <mat-option value="other">other</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
           </div>
           <div class="col-sm-12">
-            <div class="col-sm-4">
+              <mat-form-field class="col-sm-4">
+                  <mat-select formControlName="brands"  placeholder="Add Brands" multiple>
+                    <mat-option value="1">Cloths</mat-option>
+                    <mat-option value="2">Groceries</mat-option>
+                    <mat-option value="3"> Materials</mat-option>
+                    <mat-option value="4">Shirts</mat-option>
+                    <mat-option value="5">Pants</mat-option>                    
+                  </mat-select>
+                </mat-form-field>
+            <!-- <div class="col-sm-4">
               <button mat-button mat-raised-button	 color="primary"  (click)="addBrands()"> + ADD BRANDS</button>
-            </div>
-            <button mat-button mat-raised-button  *ngFor="let nub of numbers let i = index" style="margin:0.5px"	 color="primary"  (click)="addBrands()"> Brand{{nub}} <mat-icon  (click)="removeBrand(i)">cancel</mat-icon> </button>           
+            </div> -->
+            <button mat-button mat-raised-button  *ngFor="let brand of vendorForm.get('brands').value let i = index" style="margin:0.5px"	 color="primary"  (click)="addBrands()"> Brand{{brand}} <mat-icon  (click)="removeBrand(i)">cancel</mat-icon> </button>
           </div>
           <div class="col-sm-12"><br></div>
           <div class="col-sm-12">
@@ -65,7 +74,7 @@
               </div>
               <div class="col-sm-1"></div>
               <div>
-                  <button mat-button mat-raised-button class="col-sm-5"	 color="primary"> SUBMIT</button>
+                  <button mat-button mat-raised-button class="col-sm-5" color="primary"> SUBMIT</button>
                 </div>
             </div>
         </form>
