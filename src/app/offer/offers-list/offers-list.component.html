@@ -60,8 +60,8 @@
                 <td>{{offer.offerTitle}}</td>
                 <td>{{offer.offerDesc}}</td>
                 <td>{{offer.termsAndConditions}}</td>
-                <td>{{offer.offer_Valididty.fromTime}}</td>
-                <td>{{offer.offer_Valididty.toTime}}</td>
+                <td>{{offer.offer_Valididty.fromTime | date:'d-M-y'}}</td>
+                <td>{{offer.offer_Valididty.toTime | date:'d-M-y'}}</td>
                 <td>{{offer._id}}</td>   
                 <td>
                     <button mat-button>
