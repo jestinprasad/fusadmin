@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FusadminService } from 'src/app/fusadmin.service';
 
 @Component({
   selector: 'app-offers-list',
@@ -6,82 +7,37 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./offers-list.component.css']
 })
 export class OffersListComponent implements OnInit {
+  length;
+  offerList = [];
+  pageNo = 1;
+  perpage = 10;
 
-  length = 50;
-  vendorList =  [
-    {
-      name: 'balu' ,
-      email: 'balu@gmail.com',
-      phoneNo: 8300187422,
-      vendor_id : 61
-    },
-    {
-      name: 'balu' ,
-      email: 'balu@gmail.com',
-      phoneNo: 8300187422,
-      vendor_id : 61
-    },
-    {
-      name: 'balu' ,
-      email: 'balu@gmail.com',
-      phoneNo: 8300187422,
-      vendor_id : 61
-    },
-    {
-      name: 'balu' ,
-      email: 'balu@gmail.com',
-      phoneNo: 8300187422,
-      vendor_id : 61
-    },
-    {
-      name: 'balu' ,
-      email: 'balu@gmail.com',
-      phoneNo: 8300187422,
-      vendor_id : 61
-    },
-    {
-      name: 'balu' ,
-      email: 'balu@gmail.com',
-      phoneNo: 8300187422,
-      vendor_id : 61
-    },
-    {
-      name: 'balu' ,
-      email: 'balu@gmail.com',
-      phoneNo: 8300187422,
-      vendor_id : 61
-    },
-    {
-      name: 'balu' ,
-      email: 'balu@gmail.com',
-      phoneNo: 8300187422,
-      vendor_id : 61
-    },
-    {
-      name: 'balu' ,
-      email: 'balu@gmail.com',
-      phoneNo: 8300187422,
-      vendor_id : 61
-    },
-    {
-      name: 'balu' ,
-      email: 'balu@gmail.com',
-      phoneNo: 8300187422,
-      vendor_id : 61
-    }
-  ];
-
-  constructor() { }
+  constructor(
+    private fusAdminService: FusadminService
+  ) { }
 
   ngOnInit() {
+    this.getOffers();
+  }
+
+  getOffers() {
+    this.fusAdminService.getOffers(this.pageNo, this.perpage).subscribe((data: any) => {
+      this.offerList = data.data.offers;
+      this.length = data.data.count;
+      console.log(data);
+    });
   }
 
   assignPageNo(pageNo) {
     console.log(pageNo);
+    this.pageNo = pageNo;
+    this.getOffers();
   }
 
   assignRecordsPerPage(recordsPerPage) {
     console.log(recordsPerPage);
+    this.perpage = recordsPerPage;
+    this.getOffers();
   }
 
 }

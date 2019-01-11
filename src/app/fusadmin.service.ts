@@ -37,6 +37,10 @@ export class FusadminService {
     const route = `brands/brandlist?page=${pageno}&pageSize=${perpage}`;
     return this.api.get(environment.apiURL + route);
   }
+  getOffers(pageno = 1, perpage = 10) {
+    const route = `offerlist?page=${pageno}&pageSize=${perpage}`;
+    return this.api.get(apiURL + route);
+  }
   getStores(pageno = 1, perpage = 10) {
     const route = `store/storelist?page=${pageno}&pageSize=${perpage}`;
     return this.api.get(environment.apiURL + route);
