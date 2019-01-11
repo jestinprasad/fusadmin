@@ -1,23 +1,23 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { ApiService } from './api.service';
+import { environment } from './../environments/environment';
 
-const apiURL = 'http://fusadmintest.groeitech.com/';
 @Injectable({
   providedIn: 'root'
 })
 export class CommonService {
 
   constructor(
-    private http: HttpClient
+    private api: ApiService
   ) { }
 
   getBrands(id?) {
-    const url = apiURL + 'brands';
-    return this.http.get(url);
+    const url = environment.apiURL + 'brands';
+    return this.api.get(url);
   }
   getCategories() {
-    const url = apiURL + 'foundation/category';
-    return this.http.get(url);
+    const url = environment.apiURL + 'foundation/category';
+    return this.api.get(url);
   }
 
 }
