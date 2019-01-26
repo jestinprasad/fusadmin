@@ -10,7 +10,8 @@ import { MatToolbarModule,
         MatSelectModule,
         MatFormFieldModule,
         MatCheckboxModule,
-        MatRadioModule} from '@angular/material';
+        MatRadioModule,
+        MatDatepickerModule} from '@angular/material';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatTabsModule} from '@angular/material/tabs';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -37,7 +38,7 @@ import { NgxGeoautocompleteModule } from 'ngx-geoautocomplete';
     MatExpansionModule,
     MatTabsModule,
     NgxGeoautocompleteModule.forRoot(),
-
+    MatDatepickerModule
   ],
   exports: [
     PaginationComponent,
@@ -57,7 +58,8 @@ import { NgxGeoautocompleteModule } from 'ngx-geoautocomplete';
     MatRadioModule,
     MatExpansionModule,
     MatTabsModule,
-    NgxGeoautocompleteModule
+    NgxGeoautocompleteModule,
+    MatDatepickerModule
   ]
 })
 export class SharedModule { }
