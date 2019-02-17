@@ -61,10 +61,11 @@
               <td>{{store.storePerson.phone}}</td>
               <td>{{store._id}}</td>
               <td>
-          <button mat-button><mat-icon>visibility</mat-icon></button>
+          <button mat-button routerLink="./view/{{store._id}}"><mat-icon>visibility</mat-icon></button>
               </td>
               <td>
-          <button mat-button><mat-icon>edit</mat-icon></button>
+                  <button mat-button routerLink="./edit/{{store._id}}">
+                  <mat-icon>edit</mat-icon></button>
               </td>
             </tr>
           </tbody>

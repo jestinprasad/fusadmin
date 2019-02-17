@@ -14,30 +14,35 @@
     <!-- <mat-divider></mat-divider> -->
     <mat-card-content>
       <div class="row">
-        <form class="example-form">
+        <form class="example-form" [formGroup]="createAttributeForm">
           <div class="col-sm-12">
               <div>
-                  <mat-form-field class="col-sm-12">
-                    <mat-select placeholder="Select Category" required>
+                  <!-- <mat-form-field class="col-sm-12">
+                    <mat-select placeholder="Select Category" formControlName="categoryId" [disabled]="isDisable" required>
                       <mat-option value="topping">cloths</mat-option>
                       <mat-option value="topping">watches</mat-option>
                       <mat-option value="topping">pens</mat-option>
+                    </mat-select>
+                  </mat-form-field> -->
+                  <mat-form-field class="col-sm-4">
+                    <mat-select formControlName="categoryId" placeholder="Select Category" [disabled]="isDisable" required>
+                      <mat-option *ngFor="let cat of categories" [value]="cat._id">{{cat.displayName}}</mat-option>
                     </mat-select>
                   </mat-form-field>
                 </div>
             <div>
               <mat-form-field  class="col-sm-4" [hideRequiredMarker]=false [floatLabel]="'auto'">
-                <input matInput placeholder="Enter attribute name" required>
+                <input matInput placeholder="Enter attribute name" formControlName="name"  [disabled]="isDisable" required>
               </mat-form-field>
             </div>
             <div>
               <mat-form-field  class="col-sm-4">
-                <input matInput placeholder="Enter attribute display name" required>
+                <input matInput placeholder="Enter attribute display name" formControlName="displayName"  [disabled]="isDisable" required>
               </mat-form-field>
             </div>
             <div>
               <mat-form-field  class="col-sm-4" [hideRequiredMarker]=false [floatLabel]="'auto'">
-                <input matInput placeholder="Enter attribute Value name" required>
+                <input matInput placeholder="Enter attribute Value name" formControlName="value" required>
               </mat-form-field>
             </div>
           </div>
@@ -46,19 +51,49 @@
               <button mat-button mat-raised-button	 color="primary"  (click)="addAttribute()"> + ADD ATTRIBUTE</button>
             </div>
             <div class="col-sm-4">
-                <button mat-button mat-raised-button type="reset"	 color="primary"> CLEAR ATTRIBUTE AND VALUES</button>
+                <button mat-button mat-raised-button  (click)="reset()"	 color="primary"> CLEAR ATTRIBUTE AND VALUES</button>
               </div>
             <!-- <button mat-button mat-raised-button  *ngFor="let nub of numbers let i = index" style="margin:0.5px"	 color="primary"  (click)="addBrands()"> Brand{{nub}} <mat-icon  (click)="removeBrand(i)">cancel</mat-icon> </button>            -->
           </div>
           <div class="col-sm-12"><br></div>
           <div class="col-sm-12">
               <div>
-                  <button mat-button mat-raised-button class="col-sm-12"	 color="primary"> CREATE ATTRIBUTE</button>
+                  <button type="submit" mat-button mat-raised-button class="col-sm-12"	 color="primary" (click)="onSubmit()"> CREATE ATTRIBUTE</button>
                 </div>
             </div>
         </form>
       </div>
-
+<table class="table table-borderd" *ngIf="values.length>0">
+  <thead>
+    <th>Sl.NO</th>
+    <th>Attribute Name</th>
+    <th>Attribute Display Name</th>
+    <th>Attribute Values</th>    
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>{{createAttributeForm.get('name').value}}</td>
+      <td>{{createAttributeForm.get('displayName').value}}</td>
+      <td>
+        <table class="table table-borderd text-align-center">
+          <thead>
+            <th>SL.NO</th>
+            <th>Attribute Value Name</th>
+            <th>Action</th>            
+          </thead>
+          <tbody>
+            <tr *ngFor="let val of values; let i = index">
+              <td>{{i+1}}</td>
+              <td>{{val}}</td>
+              <td><button mat-button mat-raised-button class="col-sm-12"	 color="primary" (click)="delete(i)"> DELETE </button></td>              
+            </tr>
+          </tbody>
+        </table>
+      </td>      
+    </tr>
+  </tbody>
+</table>
     </mat-card-content>
     <!-- <mat-divider></mat-divider> -->
     <mat-card-actions>

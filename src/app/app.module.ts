@@ -17,7 +17,7 @@ import { InterceptorService } from './interceptor.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ApiService } from './api.service';
 import { StorageService } from './storage.service';
-
+import { RouteGuardService } from './route-guard.service';
 
 
 @NgModule({
@@ -27,7 +27,7 @@ import { StorageService } from './storage.service';
     RegisterComponent,
     ViewComponent,
     EditComponent,
-    LoginComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +46,11 @@ import { StorageService } from './storage.service';
     MatCardModule,
     HttpClientModule
   ],
-  providers: [ApiService, StorageService, InterceptorService,
+  providers: [
+    ApiService,
+    StorageService,
+    RouteGuardService,
+    InterceptorService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: InterceptorService,

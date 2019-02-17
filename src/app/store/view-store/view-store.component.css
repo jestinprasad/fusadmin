@@ -1,0 +1,31 @@
+/* .margin-10{
+    margin: 0px;
+    padding: 0%;
+} */
+.example-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .example-container > * {
+    width: 100%;
+  }
+  h4{
+    color: #673ab7;
+    font-family: cursive
+}
+.text-bold{
+  font-weight: bold;
+}
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1 !important;
+  background-color: #000;
+} 
+.modal-backdrop.in{
+  opacity: 0.5;
+}

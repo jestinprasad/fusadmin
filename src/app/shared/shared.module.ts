@@ -11,12 +11,15 @@ import { MatToolbarModule,
         MatFormFieldModule,
         MatCheckboxModule,
         MatRadioModule,
-        MatDatepickerModule} from '@angular/material';
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatDialogModule} from '@angular/material';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatTabsModule} from '@angular/material/tabs';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PaginationComponent } from '../common/pagination/pagination.component';
 import { NgxGeoautocompleteModule } from 'ngx-geoautocomplete';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [PaginationComponent],
@@ -38,7 +41,10 @@ import { NgxGeoautocompleteModule } from 'ngx-geoautocomplete';
     MatExpansionModule,
     MatTabsModule,
     NgxGeoautocompleteModule.forRoot(),
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatMenuModule,
+    MatDialogModule
   ],
   exports: [
     PaginationComponent,
@@ -59,7 +65,10 @@ import { NgxGeoautocompleteModule } from 'ngx-geoautocomplete';
     MatExpansionModule,
     MatTabsModule,
     NgxGeoautocompleteModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatMenuModule,
+    MatDialogModule
   ]
 })
 export class SharedModule { }

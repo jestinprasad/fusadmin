@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiURL: 'http://fusadmintest.groeitech.com/',
+  // apiURL: 'http://fusadmintest.groeitech.com/',
+  apiURL: 'http://fusadmintest.groeitech.com/'
   // apiURL: 'http://localhost:8000/',
 };
 

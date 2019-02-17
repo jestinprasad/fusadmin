@@ -1,8 +1,5 @@
-
-  
-
-  .margin-10{
-    margin: 28px;
+.margin-10{
+    margin: 32px;
     padding: 0%;
 }
 .example-container {
@@ -13,7 +10,12 @@
   .example-container > * {
     width: 100%;
   }
-  h2{
-    color: #673ab7;
-    font-family: cursive
-}
+  h4{
+      color: #673ab7;
+  }
+  label{
+      font-weight: 100
+  }
+  h3,h4{
+    font-family: cursive      
+  }

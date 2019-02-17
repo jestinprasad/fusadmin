@@ -1,0 +1,172 @@
+<div class="margin-10" *ngIf="brandData">
+  <mat-card style="background-color:#f5f5f5">
+    <mat-card-header class="margin-10">
+      <div class="row col-sm-12" style="padding:0">
+        <div class="col-sm-12 container" style="text-align:center">
+          <h3 style="color:#3f51b5">Brand Information</h3>
+        </div>
+      </div>
+    </mat-card-header>
+    <mat-card-content>
+      <div>
+        <mat-card style="background-color:white">
+          <mat-card-header>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="row">
+              <div class="col-sm-12">
+                <div>
+                  <!-- <label>Brand Name</label> -->
+                  <mat-form-field class="col-sm-6" [hideRequiredMarker]=false [floatLabel]="'auto'">
+                    <input matInput [(ngModel)]="brandData.displayName" placeholder="Brand Name" disabled required>
+                  </mat-form-field>
+                </div>
+                <div>
+                  <!-- <label>Brand WebURL</label> -->
+                  <mat-form-field class="col-sm-6">
+                    <input matInput placeholder="Brand webUrl" [(ngModel)]="brandData.webUrl" disabled required>
+                  </mat-form-field>
+                </div>
+                <div>
+                  <mat-form-field class="col-sm-12" [hideRequiredMarker]=false [floatLabel]="'auto'">
+                    <input matInput placeholder="Brand GSTIN" [(ngModel)]="brandData.gstin" disabled required>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+    </mat-card-actions>
+  </mat-card>
+  <mat-card style="background-color:#f5f5f5">
+    <!-- <mat-card-header class="margin-10">
+      <div class="row col-sm-12" style="padding:0">
+        <div class="col-sm-12 container" style="text-align:center">
+          <h3 style="color:#3f51b5">Brand Information</h3>
+        </div>
+      </div>
+    </mat-card-header> -->
+    <mat-card-content>
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <!-- <mat-panel-title>
+                   Value List
+                </mat-panel-title> -->FINAL CATAGORY
+          </mat-expansion-panel-header>
+          <table class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th>SI.No</th>
+                <th>Final Category Name </th>
+                <th>Attributes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let value of brandData.finalCategories let j = index">
+                <td>{{j+1}}</td>
+                <td>{{value.displayName}}</td>
+                <td>
+                  <button mat-button mat-raised-button class="col-sm-5" color="primary">ADD/REMOVE ATTRIBUTE</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-card-content>
+    <mat-card-content>
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <!-- <mat-panel-title>
+                   Value List
+                </mat-panel-title> -->MANAGE BRAND IMAGES
+          </mat-expansion-panel-header>
+          <div class="row">
+            <div class="col-md-4" style="margin-top:10px;">
+              <label>Upload the Brand Card</label>
+              <p>
+                Images:
+                <p>
+            </div>
+            <div class="col-md-4">
+              Select a file:
+              <input type="file" name="myFile">
+            </div>
+            <div class="col-md-4" style="margin-top:10px;">
+              <button mat-button mat-raised-button class="col-sm-8" color="primary">Upload The Image</button>
+            </div>
+          </div>
+          <hr>
+
+          <div class="row">
+            <div class="col-md-4" style="margin-top:10px;">
+              <label>Upload the Brand Logo</label>
+              <p>
+                Images:
+                <p>
+            </div>
+            <div class="col-md-4">
+              Select a file:
+              <input type="file" name="myFile">
+            </div>
+            <div class="col-md-4" style="margin-top:10px;">
+              <button mat-button mat-raised-button class="col-sm-8" color="primary">Upload The Image</button>
+            </div>
+          </div>
+          <hr>
+
+          <div class="row">
+            <div class="col-md-4" style="margin-top:10px;">
+              <label>Upload the Brand display </label>
+              <p>
+                Images:
+                <p>
+            </div>
+            <div class="col-md-4">
+              Select a file:
+              <input type="file" name="myFile">
+            </div>
+            <div class="col-md-4" style="margin-top:10px;">
+              <button mat-button mat-raised-button class="col-sm-8" color="primary">Upload The Image</button>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-card-content>
+    <mat-card-content>
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <!-- <mat-panel-title>
+                   Value List
+                </mat-panel-title> -->ATTRIBUTES
+          </mat-expansion-panel-header>
+          <mat-select [formControl]="finalCategorie " placeholder="fc " required>
+            <mat-option *ngFor="let fc of brandData.finalCategories " [value]="fc._id ">{{fc.displayName}}</mat-option>
+          </mat-select>
+          <table class="table table-striped table-bordered ">
+            <thead>
+              <tr>
+                <th>SI.No</th>
+                <th>Attribute Value Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let attr of attributes let j=i ndex ">
+                <td>{{j+1}}</td>
+                <td>{{attr.displayName}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-card-content>
+    <mat-card-actions>
+    </mat-card-actions>
+  </mat-card>
+</div>

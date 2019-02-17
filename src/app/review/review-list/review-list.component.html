@@ -3,10 +3,113 @@
       <mat-card-header class="margin-10">
       </mat-card-header>
       <mat-card-content>
-          <mat-tab-group>
-              <mat-tab label="First"> Pending </mat-tab>
-              <mat-tab label="Second"> Accepted </mat-tab>
-              <mat-tab label="Third"> Rejected </mat-tab>
+          <mat-tab-group (selectedTabChange)="selectedTab($event)">
+              <mat-tab label="Pending"> 
+              <table class="table table-border">
+                <thead>
+                  <tr>
+                    <th>SI.NO</th>
+                    <th>Review ON</th>
+                    <th>Review Msg</th>
+                    <th>Rating</th>
+                    <th>Store Name</th>
+                    <th>Product Name</th>
+                    <th>Brand Name</th>
+                    <th>User Name</th>
+                    <th>Review_id</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let review of reviewList; let i = index">
+                    <td>{{i+1}}</td>
+                    <td>{{review.createdAt | date:'d-M-y'}}</td>
+                    <td>{{review.message}}</td>
+                    <td>{{review.rating}}</td>
+                    <td>{{review.storeName}}</td>
+                    <td>{{review.productName}}</td>
+                    <td>{{review.brandName}}</td>
+                    <td>{{review.userName}}</td>
+                    <td>{{review._id}}</td>
+                      <td>
+                        <button mat-icon-button [matMenuTriggerFor]="menu">
+                          <mat-icon>more_vert</mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu">
+                          <button mat-menu-item (click)="approve(review._id)">
+                            <!-- <mat-icon>dialpad</mat-icon> -->
+                            <span>Approve</span>
+                          </button>
+                          <button mat-menu-item  (click)="reject(review._id)">
+                            <!-- <mat-icon>notifications_off</mat-icon> -->
+                            <span>Reject</span>
+                          </button>
+                        </mat-menu>
+                      </td>
+                  </tr>
+                </tbody>
+              </table>
+              </mat-tab>
+              <mat-tab label="Approved"  > 
+                  <table  class="table table-border">
+                      <thead>
+                        <tr>
+                          <th>SI.NO</th>
+                          <th>Review ON</th>
+                          <th>Review Msg</th>
+                          <th>Rating</th>
+                          <th>Store Name</th>
+                          <th>Product Name</th>
+                          <th>Brand Name</th>
+                          <th>User Name</th>
+                          <th>Review_id</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let review of reviewList; let i = index">
+                          <td>{{i+1}}</td>
+                          <td>{{review.createdAt | date:'d-M-y'}}</td>
+                          <td>{{review.message}}</td>
+                          <td>{{review.rating}}</td>
+                          <td>{{review.storeName}}</td>
+                          <td>{{review.productName}}</td>
+                          <td>{{review.brandName}}</td>
+                          <td>{{review.userName}}</td>
+                          <td>{{review._id}}</td>
+                        </tr>
+                      </tbody>
+                    </table>  
+              </mat-tab>
+              <mat-tab label="Rejected" > 
+                  <table  class="table table-border">
+                      <thead>
+                        <tr>
+                          <th>SI.NO</th>
+                          <th>Review ON</th>
+                          <th>Review Msg</th>
+                          <th>Rating</th>
+                          <th>Store Name</th>
+                          <th>Product Name</th>
+                          <th>Brand Name</th>
+                          <th>User Name</th>
+                          <th>Review_id</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let review of reviewList; let i = index">
+                          <td>{{i+1}}</td>
+                          <td>{{review.createdAt | date:'d-M-y'}}</td>
+                          <td>{{review.message}}</td>
+                          <td>{{review.rating}}</td>
+                          <td>{{review.storeName}}</td>
+                          <td>{{review.productName}}</td>
+                          <td>{{review.brandName}}</td>
+                          <td>{{review.userName}}</td>
+                          <td>{{review._id}}</td>
+                        </tr>
+                      </tbody>
+                    </table>  
+              </mat-tab>
             </mat-tab-group>
       </mat-card-content>
       <!-- <mat-divider></mat-divider> -->

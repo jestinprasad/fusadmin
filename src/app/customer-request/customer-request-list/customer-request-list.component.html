@@ -1,20 +1,113 @@
-<!-- <mat-tab-group>
-  <mat-tab label="First"> Content 1 </mat-tab>
-  <mat-tab label="Second"> Content 2 </mat-tab>
-  <mat-tab label="Third"> Content 3 </mat-tab>
-</mat-tab-group> -->
-
 <div class="margin-10">
   <mat-card style="background-color:#f5f5f5">
     <mat-card-header class="margin-10">
     </mat-card-header>
     <mat-card-content>
-        <mat-tab-group>
-            <mat-tab label="PENDING">{{status}}  </mat-tab>
-            <mat-tab label="INSTOCK"> {{status}} </mat-tab>
-            <mat-tab label="OUT OF STOCK">{{status}}  </mat-tab>
+        <mat-tab-group (selectedTabChange)="selectedTab($event)">
+            <mat-tab label="Pending"> 
+              <h3>Pending Customer Request</h3>
+            <table class="table table-border">
+              <thead>
+                <tr>
+                  <th>SI.NO</th>
+                  <th>Store Name</th>
+                  <th>Product Name</th>
+                  <th>Brand Name</th>
+                  <th>Attribute Name</th>
+                  <th>Attribute Value</th>
+                  <th>User Name</th>
+                  <th>Request_id</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let request of requestList; let i = index">
+                  <td>{{i+1}}</td>
+                  <td>{{request.storeName}}</td>
+                  <td>{{request.productName}}</td>
+                  <td>{{request.brandName}}</td>
+                  <td>{{request.attributeName}}</td>
+                  <td>{{request.valueOfAttribute}}</td>
+                  <td>{{request.userName}}</td>
+                  <td>{{request._id}}</td>
+                    <td>
+                      <button mat-icon-button [matMenuTriggerFor]="menu">
+                        <mat-icon>more_vert</mat-icon>
+                      </button>
+                      <mat-menu #menu="matMenu">
+                        <button mat-menu-item (click)="inStock(request._id)">
+                          <!-- <mat-icon>dialpad</mat-icon> -->
+                          <span>IN STOCK</span>
+                        </button>
+                        <button mat-menu-item (click)="outOfStock(request._id)">
+                          <!-- <mat-icon>notifications_off</mat-icon> -->
+                          <span>OUT OF STOCK</span>
+                        </button>
+                      </mat-menu>
+                    </td>
+                </tr>
+              </tbody>
+            </table>
+            </mat-tab>
+            <mat-tab label="IN STOCK">
+                <h3>In Stock Customer Request</h3> 
+                <table  class="table table-border">
+                    <thead>
+                      <tr>
+                        <th>SI.NO</th>
+                        <th>Store Name</th>
+                        <th>Product Name</th>
+                        <th>Brand Name</th>
+                        <th>Attribute Name</th>
+                        <th>Attribute Value</th>
+                        <th>User Name</th>
+                        <th>Request_id</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let request of requestList; let i = index">
+                        <td>{{i+1}}</td>
+                        <td>{{request.storeName}}</td>
+                        <td>{{request.productName}}</td>
+                        <td>{{request.brandName}}</td>
+                        <td>{{request.attributeName}}</td>
+                        <td>{{request.valueOfAttribute}}</td>
+                        <td>{{request.userName}}</td>
+                        <td>{{request._id}}</td>
+                      </tr>
+                    </tbody>
+                  </table>  
+            </mat-tab>
+            <mat-tab label="OUT OF STOCK"> 
+              <h3>Out Of Stock Customer Request</h3>
+                <table  class="table table-border">
+                    <thead>
+                      <tr>
+                        <th>SI.NO</th>
+                        <th>Store Name</th>
+                        <th>Product Name</th>
+                        <th>Brand Name</th>
+                        <th>Attribute Name</th>
+                        <th>Attribute Value</th>
+                        <th>User Name</th>
+                        <th>Request_id</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let request of requestList; let i = index">
+                        <td>{{i+1}}</td>
+                        <td>{{request.storeName}}</td>
+                        <td>{{request.productName}}</td>
+                        <td>{{request.brandName}}</td>
+                        <td>{{request.attributeName}}</td>
+                        <td>{{request.valueOfAttribute}}</td>
+                        <td>{{request.userName}}</td>
+                        <td>{{request._id}}</td>
+                      </tr>
+                    </tbody>
+                  </table>  
+            </mat-tab>
           </mat-tab-group>
-          
     </mat-card-content>
     <!-- <mat-divider></mat-divider> -->
     <mat-card-actions>
@@ -23,4 +116,3 @@
 
   </mat-card>
 </div>
-

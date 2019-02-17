@@ -14,6 +14,8 @@
     <!-- <mat-divider></mat-divider> -->
     <mat-card-content>
       <div>
+        <form [formGroup]="storeForm" (ngSubmit)="onSubmit()">
+      <div>
         <mat-card style="background-color:white">
           <mat-card-header>
             <!-- <div mat-card-avatar class="example-header-image"></div> -->
@@ -31,11 +33,11 @@
             <div class="row">
               <!-- <form class="example-form"> -->
               <div class="col-sm-12">
-                <mat-radio-group [(ngModel)]="brandType">
-                  <mat-radio-button style="font-weight:100" class="col-sm-6" color="primary" value="single">
+                <mat-radio-group formControlName="storeTypeId">
+                  <mat-radio-button style="font-weight:100" class="col-sm-6" color="primary" value="1">
                     Single Brand Store
                   </mat-radio-button>
-                  <mat-radio-button style="font-weight:100" class="col-sm-6" color="primary" value="multiple">
+                  <mat-radio-button style="font-weight:100" class="col-sm-6" color="primary" value="2">
                     Multiple Brand Store
                   </mat-radio-button>
                 </mat-radio-group>
@@ -71,27 +73,26 @@
               <!-- <form class="example-form"> -->
               <div class="col-sm-12">
                 <mat-form-field class="col-sm-6">
-                  <mat-select placeholder="Select Vendor" required>
-                    <mat-option value="topping">archana</mat-option>
+                  <mat-select formControlName="vendor" placeholder="Select Vendor" required>
+                    <mat-option *ngFor="let ven of vendors" [value]="ven._id">{{ven.name}}</mat-option>
                   </mat-select>
                 </mat-form-field>
+                
                 <mat-form-field class="col-sm-6">
-                  <mat-select placeholder="Select Category" multiple required>
-                    <mat-option value="topping">Cloths</mat-option>
-                    <mat-option value="topping">pens</mat-option>
+                  <mat-select formControlName="categoryId" placeholder="Select Category" multiple required>
+                    <mat-option *ngFor="let cat of categories" [value]="cat._id">{{cat.displayName}}</mat-option>
                   </mat-select>
                 </mat-form-field>
-                <mat-form-field class="col-sm-12" [hideRequiredMarker]=false [floatLabel]="'auto'">
-                  <input matInput placeholder="Enter Store Name" required>
+                <mat-form-field class="col-sm-12">
+                  <input matInput formControlName="displayName" placeholder="Enter Store Name" required>
                 </mat-form-field>
                 <mat-form-field class="col-sm-6">
-                  <mat-select placeholder="Select Fecilities" multiple required>
-                    <mat-option value="topping">Lifts</mat-option>
-                    <mat-option value="topping">Elivator</mat-option>
+                  <mat-select formControlName="facilities" placeholder="Select Fecilities" multiple required>
+                    <mat-option *ngFor="let faci of facilities" [value]="faci._id">{{faci.displayName}}</mat-option>
                   </mat-select>
                 </mat-form-field>
                 <mat-form-field class="col-sm-6" [floatLabel]="'auto'">
-                  <input matInput placeholder="Enter GSTIN">
+                  <input matInput formControlName="gstin" placeholder="Enter GSTIN">
                 </mat-form-field>
 
               </div>
@@ -120,52 +121,49 @@
             <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
           </mat-card-header>
           <!-- <mat-divider></mat-divider> -->
-          <mat-card-content>
+          <mat-card-content formGroupName="headOfficeOrbillingAddress">
             <div class="row">
               <!-- <form class="example-form"> -->
               <div class="col-sm-12">
                 <div>
                   <mat-form-field class="col-sm-12" [hideRequiredMarker]=false [floatLabel]="'auto'">
-                    <input matInput placeholder="Postal Store Address" required>
+                    <input matInput formControlName="addressString" placeholder="Postal Store Address" required>
                   </mat-form-field>
                 </div>
                 <br>
                 <br>
                 <div>
-                  <mat-form-field class="col-sm-12" [hideRequiredMarker]=false [floatLabel]="'auto'">
-                    <input matInput placeholder="Enter Google Store Address" required>
-                  </mat-form-field>
+                  <!-- <mat-form-field class="col-sm-12" [hideRequiredMarker]=false [floatLabel]="'auto'"> -->
+                    <!-- <input matInput formControlName="googleAddressString" placeholder="Enter Google Store Address" required> -->
+                    <ngxgeo-autocomplete  (componentCallback)="autoCompleteCallback1($event)"></ngxgeo-autocomplete>
+                    
+                  <!-- </mat-form-field> -->
                 </div>
                 <br>
                 <div>
                   <div class="col-sm-12">
                     <mat-form-field class="col-sm-2">
-                      <mat-select placeholder="Countries" required>
-                        <mat-option value="topping">India</mat-option>
+                      <mat-select formControlName="countryId" placeholder="Countries" required>
+                        <mat-option *ngFor="let con of country" [value]="con.id">{{con.name}}</mat-option>
                       </mat-select>
                     </mat-form-field>
                     <mat-form-field class="col-sm-2">
-                      <mat-select placeholder="State" required>
-                        <mat-option value="topping">Tamil Nadu</mat-option>
-                        <mat-option value="topping">Andhara</mat-option>
-                        <mat-option value="topping">Karala</mat-option>
-                        <mat-option value="topping">Karnataka</mat-option>
+                      <mat-select formControlName="stateId" placeholder="State" required >
+                        <mat-option *ngFor="let state of states" [value]="state._id">{{state.name}}</mat-option>
                       </mat-select>
                     </mat-form-field>
                     <mat-form-field class="col-sm-2">
-                      <mat-select placeholder="City" required>
-                        <mat-option value="topping">Chennai</mat-option>
-                        <mat-option value="topping">Theni</mat-option>
-                        <mat-option value="topping">Thiruvallur</mat-option>
+                      <mat-select formControlName="cityId" placeholder="City" required>
+                        <mat-option *ngFor="let city of cities" [value]="city._id">{{city.name}}</mat-option>
                       </mat-select>
                     </mat-form-field>
                     <mat-form-field class="col-sm-2">
-                      <mat-select placeholder="Area" required>
-                        <mat-option value="topping">Uthukottai</mat-option>
+                      <mat-select formControlName="locality" placeholder="Area" required>
+                        <mat-option *ngFor="let locality of localities" [value]="locality._id">{{locality.name}}</mat-option>
                       </mat-select>
                     </mat-form-field>
                     <mat-form-field class="col-sm-2" [hideRequiredMarker]=false [floatLabel]="'auto'">
-                      <input matInput placeholder="Enter Pincode" required>
+                      <input matInput formControlName="zipCode" placeholder="Enter Pincode" required>
                     </mat-form-field>
                   </div>
                 </div>
@@ -195,26 +193,27 @@
             <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
           </mat-card-header>
           <!-- <mat-divider></mat-divider> -->
-          <mat-card-content>
+          <mat-card-content formGroupName="storePerson">
             <div class="row">
               <!-- <form class="example-form"> -->
               <div class="col-sm-12">
                 <mat-form-field class="col-sm-6" [floatLabel]="'auto'">
-                  <input matInput placeholder="Enter Store Contact Person Name">
+                  <input matInput formControlName="name" placeholder="Enter Store Contact Person Name">
                 </mat-form-field>
                 <mat-form-field class="col-sm-6">
-                  <mat-select placeholder="Select Store Contact Person Gender" multiple required>
-                    <mat-option value="topping">Male</mat-option>
-                    <mat-option value="topping">Female</mat-option>
-                    <mat-option value="topping">Other</mat-option>
+                  <mat-select formControlName="gender" placeholder="Select Store Contact Person Gender"  required>
+                    <mat-option value="male">Male</mat-option>
+                    <mat-option value="female">Female</mat-option>
+                    <mat-option value="other">Other</mat-option>
                   </mat-select>
                 </mat-form-field>
                 <mat-form-field class="col-sm-6" [hideRequiredMarker]=false [floatLabel]="'auto'">
-                  <input matInput placeholder="Enter Store Contact Person Email" required>
+                  <input matInput formControlName="email" placeholder="Enter Store Contact Person Email" required>
                 </mat-form-field>
 
                 <mat-form-field class="col-sm-6" [floatLabel]="'auto'">
-                  <input matInput placeholder="Enter Store Contact Person Phone No" required>
+                  <input matInput formControlName="phone" placeholder="Enter Store Contact Person Phone No" required>
+
                 </mat-form-field>
 
               </div>
@@ -239,7 +238,8 @@
 
         </mat-card>
       </div>
-
+    </form>
+  </div>
     </mat-card-content>
     <!-- <mat-divider></mat-divider> -->
     <mat-card-actions>

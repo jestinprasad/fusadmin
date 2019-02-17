@@ -56,15 +56,19 @@
               <td>{{brand.webUrl}}</td>
               <td>{{brand.gstin}}</td>
               <td>{{brand._id}}</td>
-              <td>
+              <!-- <td>
           <button mat-button>
             <mat-icon>visibility</mat-icon>
           </button>
-              </td>
+              </td> -->
               <td>
-          <button mat-button ><mat-icon>edit</mat-icon>
-          </button>
-              </td>
+                <button mat-button routerLink="./view/{{brand._id}}">
+                <mat-icon>visibility</mat-icon></button>
+            </td>
+              <td>
+                <button mat-button routerLink="./edit/{{brand._id}}">
+                <mat-icon>edit</mat-icon></button>
+            </td>
             </tr>
           </tbody>
         </table>
