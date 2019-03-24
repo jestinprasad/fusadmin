@@ -5,7 +5,6 @@ import { RegisterComponent } from './register/register.component';
 import { ViewComponent } from './view/view.component';
 import { EditComponent } from './edit/edit.component';
 import { RouteGuardService } from './route-guard.service';
-import { RouteGuardService } from './route-guard.service';
 
 const routes: Routes = [
   {
@@ -19,57 +18,57 @@ const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: './dashboard/dashboard.module#DashboardModule',
-    canLoad: [RouteGuardService]
+    // canLoad: [RouteGuardService]
   },
   {
     path: 'vendor',
     loadChildren: './vendor/vendor.module#VendorModule',
-    canLoad: [RouteGuardService]
+    // canLoad: [RouteGuardService]
   },
   {
     path: 'brand',
     loadChildren: './brand/brand.module#BrandModule',
-    canLoad: [RouteGuardService]
+    // canLoad: [RouteGuardService]
   },
   {
     path: 'store',
     loadChildren: './store/store.module#StoreModule',
-    canLoad: [RouteGuardService]
+    // canLoad: [RouteGuardService]
   },
   {
     path: 'attributes',
     loadChildren: './attributes/attributes.module#AttributesModule',
-    canLoad: [RouteGuardService]
+    // canLoad: [RouteGuardService]
   },
   {
     path: 'product',
     loadChildren: './product/product.module#ProductModule',
-    canLoad: [RouteGuardService]
+    // canLoad: [RouteGuardService]
   },
   {
     path: 'offer',
     loadChildren: './offer/offer.module#OfferModule',
-    canLoad: [RouteGuardService]
+    // canLoad: [RouteGuardService]
   },
   {
     path: 'user',
     loadChildren: './user/user.module#UserModule',
-    canLoad: [RouteGuardService]
+    // canLoad: [RouteGuardService]
   },
   {
     path: 'review',
     loadChildren: './review/review.module#ReviewModule',
-    canLoad: [RouteGuardService]
+    // canLoad: [RouteGuardService]
   },
   {
     path: 'feedback',
     loadChildren: './feedback/feedback.module#FeedbackModule',
-    canLoad: [RouteGuardService]
+    // canLoad: [RouteGuardService]
   },
   {
     path: 'customerRequest',
     loadChildren: './customer-request/customer-request.module#CustomerRequestModule',
-    canLoad: [RouteGuardService]
+    // canLoad: [RouteGuardService]
   }
 ];
 

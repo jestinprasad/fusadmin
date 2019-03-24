@@ -11,6 +11,12 @@ import { CommonService } from '../../common.service';
 })
 export class ViewBrandComponent implements OnInit {
 
+  brandCards: any;
+  uploads: any;
+  brandImage: any;
+  uploadedImages: any;
+  uploadedLogo: any;
+  brandLogos: any;
   finalCategorie: FormControl;
   brandData: any;
   constructor(
@@ -38,4 +44,63 @@ export class ViewBrandComponent implements OnInit {
     })
   }
 
+  brandCard(event){
+    console.log(event.target.files);
+  const data = this.commonService.newFormData(event.target.files);
+  console.log(data);
+  this.brandCards = data;
+  
+ }
+
+ brandLogo(event){
+   console.log(event.target.files);
+ const data = this.commonService.newFormData(event.target.files);
+ console.log(data);
+ this.brandLogos = data;
+ 
+}
+
+brandImages(event){
+ console.log(event.target.files);
+const data = this.commonService.newFormData(event.target.files);
+console.log(data);
+this.brandImage = data;
+
+}
+
+ uploadBrandCard(){
+   const data = {
+     storeId:this.activatedRoute.snapshot.params.id,
+     brandCard:this.brandCards
+   }
+   this.fusadminService.uploadBrandCardImage(data)
+   .subscribe((response)=>{
+     console.log(response);
+     this.uploads = response.successUploads;
+   })
+ }
+
+ uploadBrandImages(){
+   const data = {
+     storeId:this.activatedRoute.snapshot.params.id,
+     brandCard:this.brandImage
+   }
+   this.fusadminService.uploadBrandCardImages(data)
+   .subscribe((response)=>{
+     console.log(response);
+     this.uploadedImages = response.successUploads;
+   })
+ }
+
+ uploadBrandLogo(){
+   const data = {
+     storeId:this.activatedRoute.snapshot.params.id,
+     brandCard:this.brandLogos
+   }
+   this.fusadminService.uploadBrandCardLogo(data)
+   .subscribe((response)=>{
+     console.log(response);
+     this.uploadedLogo = response.successUploads;
+   })
+ }
 }

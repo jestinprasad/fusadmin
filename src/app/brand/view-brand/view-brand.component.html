@@ -80,62 +80,71 @@
     </mat-card-content>
     <mat-card-content>
       <mat-accordion>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <!-- <mat-panel-title>
-                   Value List
-                </mat-panel-title> -->MANAGE BRAND IMAGES
-          </mat-expansion-panel-header>
-          <div class="row">
-            <div class="col-md-4" style="margin-top:10px;">
-              <label>Upload the Brand Card</label>
-              <p>
-                Images:
-                <p>
-            </div>
-            <div class="col-md-4">
-              Select a file:
-              <input type="file" name="myFile">
-            </div>
-            <div class="col-md-4" style="margin-top:10px;">
-              <button mat-button mat-raised-button class="col-sm-8" color="primary">Upload The Image</button>
-            </div>
-          </div>
-          <hr>
-
-          <div class="row">
-            <div class="col-md-4" style="margin-top:10px;">
-              <label>Upload the Brand Logo</label>
-              <p>
-                Images:
-                <p>
-            </div>
-            <div class="col-md-4">
-              Select a file:
-              <input type="file" name="myFile">
-            </div>
-            <div class="col-md-4" style="margin-top:10px;">
-              <button mat-button mat-raised-button class="col-sm-8" color="primary">Upload The Image</button>
-            </div>
-          </div>
-          <hr>
-
-          <div class="row">
-            <div class="col-md-4" style="margin-top:10px;">
-              <label>Upload the Brand display </label>
-              <p>
-                Images:
-                <p>
-            </div>
-            <div class="col-md-4">
-              Select a file:
-              <input type="file" name="myFile">
-            </div>
-            <div class="col-md-4" style="margin-top:10px;">
-              <button mat-button mat-raised-button class="col-sm-8" color="primary">Upload The Image</button>
-            </div>
-          </div>
-        </mat-expansion-panel>
+          <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <!-- <mat-panel-title>
+                         Value List
+                      </mat-panel-title> -->MANAGE BRAND IMAGES
+              </mat-expansion-panel-header>
+              <div class="row">
+                <div class="col-md-4" style="margin-top:10px;">
+                  <label>Upload the Brand Card</label>
+                  <p>
+                    Images:
+                    <p>
+                </div>
+                <div class="col-md-4">
+                  Select a file:
+                  <input type="file" name="myFile" (change)="brandCard($event)">
+                </div>
+                <div class="col-md-4" style="margin-top:10px;">
+                  <button mat-button mat-raised-button class="col-sm-8" (click)="uploadBrandCard()" color="primary">Upload The Image</button>
+                </div>
+                <div class="col-md-4" *ngFor="let s3link of uploads">
+                  <img width="50px" height="50px" src="{{s3link}}">
+                   </div>
+              </div>
+              <hr>
+    
+              <div class="row">
+                <div class="col-md-4" style="margin-top:10px;">
+                  <label>Upload the Brand Logo</label>
+                  <p>
+                    Images:
+                    <p>
+                </div>
+                <div class="col-md-4">
+                  Select a file:
+                  <input type="file" name="myFile" (change)="brandLogo($event)">
+                </div>
+                <div class="col-md-4" style="margin-top:10px;">
+                  <button mat-button mat-raised-button class="col-sm-8" color="primary" (click)="uploadBrandLogo()">Upload The Image</button>
+                </div>
+                <div class="col-md-4" *ngFor="let s3link of uploadedLogo">
+                  <img width="50px" height="50px" src="{{s3link}}">
+                   </div>
+              </div>
+              <hr>
+    
+              <div class="row">
+                <div class="col-md-4" style="margin-top:10px;">
+                  <label>Upload the Brand display </label>
+                  <p>
+                    Images:
+                    <p>
+                </div>
+                <div class="col-md-4">
+                  Select a file:
+                  <input type="file" name="myFile" multiple (change)="brandImages($event)">
+                </div>
+                <div class="col-md-4" style="margin-top:10px;">
+                  <button mat-button mat-raised-button class="col-sm-8" color="primary" (click)="uploadBrandImages()">Upload The Image</button>
+                </div>
+                <div class="col-md-4" *ngFor="let s3link of uploadedImages">
+                  <img width="50px" height="50px" src="{{s3link}}">
+                   </div>
+              </div>
+            </mat-expansion-panel>
       </mat-accordion>
     </mat-card-content>
     <mat-card-content>

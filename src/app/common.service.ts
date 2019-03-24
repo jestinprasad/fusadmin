@@ -14,8 +14,16 @@ adminLogin(value){
   const route = 'common/adminLogin';
   return this.api.post(environment.apiURL + route, value)
 }
-  getBrands(id?) {
+  getBrands() {
     const url = environment.apiURL + 'brands';
+    return this.api.get(url);
+  }
+  getBrandsById(data) {
+    const url = environment.apiURL + `brands?category=${data}`;
+    return this.api.get(url);
+  }
+  downloadTemplate(data){
+    const url = environment.apiURL + `bulkProduct/getTemplate/${data.catId}/${data.brandId}`;
     return this.api.get(url);
   }
   getCategories() {
@@ -24,6 +32,11 @@ adminLogin(value){
   }
   getCatagoriesbyId(data) {
     const url = environment.apiURL + `vendors/relatedLists?vendorId=${data}`
+    return this.api.get(url)
+  }
+
+  getFinalCatagoriesbyId(data) {
+    const url = environment.apiURL + `brands/getMappedFinalCat/${data}`
     return this.api.get(url)
   }
   getCities(){
@@ -38,4 +51,14 @@ adminLogin(value){
     const url = environment.apiURL + 'foundation/states?countryId=1';
     return this.api.get(url);
   }
+
+  newFormData(files){
+    console.log(files);
+    const formData = new FormData();
+    for (const file of files) {
+      formData.append('name', file);
+    }
+    return formData;
+  }
+
 }

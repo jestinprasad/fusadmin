@@ -1,0 +1,61 @@
+<mat-card style="margin-top: 30px">
+  <mat-card-header class="w-100 p-5">
+    <h4 class="d-inline-block w-100">
+      Download Excel Templete For Bulk Upload Of Products
+    </h4>
+  </mat-card-header>
+
+  <mat-card-content class="w-100 p-5">
+    <div class="row">
+        <mat-form-field class="col-sm-4">
+            <mat-select placeholder="Select Category" [(ngModel)]="categoryId" (ngModelChange)="getBrands()" required>
+                <mat-option *ngFor="let category of categories" [value]="category._id">{{category.displayName}}</mat-option>
+              </mat-select>
+        </mat-form-field>
+        <mat-form-field class="col-sm-4">
+            <mat-select placeholder="Select Brands" [(ngModel)]="brandId" required>
+                <mat-option *ngFor="let brand of brands" [value]="brand._id">{{brand.displayName}}</mat-option>
+              </mat-select>
+        </mat-form-field>
+      <div class="col-md-4" style="margin-top: 11px">
+        <a type="button" mat-flat-button class="btn btn-primary" disabled="{{categoryId&&brandId?false:true}}" [href]="downloadLink" download target="__blank">Download Template</a>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<mat-card style="margin-top: 30px">
+  <mat-card-header class="w-100 p-5">
+    <h4 class="d-inline-block w-100">
+      Upload Excel Templete For Bulk Upload Of Products
+    </h4>
+  </mat-card-header>
+
+  <mat-card-content class="w-100 p-5">
+    <div class="row">
+      <mat-form-field class="col-sm-4">
+        <mat-select placeholder="Select Category" [(ngModel)]="catId" (ngModelChange)="getStores()" required>
+            <mat-option *ngFor="let category of categories" [value]="category._id">{{category.displayName}}</mat-option>
+          </mat-select>
+    </mat-form-field>
+        <mat-form-field class="col-md-3">
+          <mat-select>
+            <mat-option>abcd</mat-option>
+            <mat-option>abcd</mat-option>
+            <mat-option>abcd</mat-option>
+            <mat-option>abcd</mat-option>
+          </mat-select>
+        </mat-form-field>
+      <div class="col-md-3">
+          <span style="background-color: green" class="btn btn-primary btn-file">
+              SELECT FILES <input type="file">
+          </span>
+        <!-- <button style="margin-top: 11px" type="" mat-flat-button class="btn btn-success">SELECT FILES</button> -->
+      </div>
+
+      <div class="col-md-3">
+        <button style="margin-top: 11px" type="button" mat-flat-button class="btn btn-primary">UPLOAD TEMPLATE</button>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

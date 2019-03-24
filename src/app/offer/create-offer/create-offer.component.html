@@ -14,61 +14,149 @@
       <!-- <mat-divider></mat-divider> -->
       <mat-card-content>
         <div class="row">
-          <form class="example-form">
+          <form class="example-form" [formGroup]="offerForm">
             <div class="col-sm-12">
               <div>
                 <mat-form-field  class="col-sm-6" [hideRequiredMarker]=false [floatLabel]="'auto'">
-                  <input matInput placeholder="Enter offer name" required>
+                  <input matInput formControlName="offerTitle" placeholder="Enter offer name" required>
                 </mat-form-field>
               </div>
               <div>
                 <mat-form-field  class="col-sm-6">
-                  <input matInput placeholder="Enter offer description" required>
+                  <input matInput formControlName="offerDesc" placeholder="Enter offer description" required>
                 </mat-form-field>
               </div>
-              <div>
-                <mat-form-field  class="col-sm-6" [hideRequiredMarker]=false [floatLabel]="'auto'">
-                  <input matInput placeholder="Enter Offer Start Date" required>
-                </mat-form-field>
-                <mat-form-field  class="col-sm-6" [hideRequiredMarker]=false [floatLabel]="'auto'">
-                    <input matInput placeholder="Enter Offer End Date" required>
+              <div formGroupName="offer_Valididty">
+                  <mat-form-field class="col-sm-6"> 
+                    <input matInput [matDatepicker]="picker1" placeholder="Enter Offer Start Date"
+                           formControlName="fromTime">
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                  </mat-form-field>
+                  <mat-form-field  class="col-sm-6"> 
+                    <input matInput [matDatepicker]="picker2" placeholder="Enter Offer End Date"
+                    formControlName="toTime">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
                   </mat-form-field>
               </div>
             </div>
             <div class="col-sm-12">
               <div>
                 <mat-form-field class="col-sm-12">
-                  <mat-select placeholder="Select Category" [(ngModel)]="category" name="category" (change)="showCategory()" multiple required>
+                  <mat-select placeholder="Select Category" formControlName="categoryId"  name="category" (change)="showCategory()" multiple required>
+                    <mat-option *ngFor="let category of categories" [value]="category._id">{{category.displayName}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div>
+              <mat-radio-button style="margin-left:3px" class="example-radio-button" color="primary" (change)="singleStoreMultipleBrand()">
+                Single Store Multi Brand Offer
+              </mat-radio-button><br>
+              <mat-radio-button style="margin-left:3px" class="example-radio-button" color="primary" (change)="singleBrandMultipleStore()">
+                Single Brand Multiple Store Offer
+              </mat-radio-button>
+            </div>
+            <div class="col-sm-12">
+              <div class="row">
+                <div class="col-sm-6">
+                  <mat-form-field class="col-sm-8" *ngIf="isSingleBrand">
+                    <mat-select placeholder="Select Single Brand" formControlName="brandIds" name="category" (change)="showCategory()"  required>
+                      <mat-option [value]="'cloths'">cloths</mat-option>
+                      <mat-option [value]="'watches'">watches</mat-option>
+                      <mat-option [value]="'pens'">pens</mat-option>
+                    </mat-select>
+                  </mat-form-field><br>
+                  <mat-form-field class="col-sm-8" *ngIf="isSingleStore">
+                    <mat-select placeholder="Select Single Store" formControlName="storeIds" name="category" (change)="showCategory()"  required>
+                      <mat-option [value]="'cloths'">cloths</mat-option>
+                      <mat-option [value]="'watches'">watches</mat-option>
+                      <mat-option [value]="'pens'">pens</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-sm-6">
+                  <mat-form-field class="col-sm-8" *ngIf="isMultipleStore">
+                    <mat-select placeholder="Select Multiple Stores" formControlName="storeIds"  name="category" (change)="showCategory()" multiple required>
+                      <mat-option [value]="'cloths'">cloths</mat-option>
+                      <mat-option [value]="'watches'">watches</mat-option>
+                      <mat-option [value]="'pens'">pens</mat-option>
+                    </mat-select>
+                  </mat-form-field><br>
+                  <mat-form-field class="col-sm-8" *ngIf="isMultipleBrand">
+                    <mat-select placeholder="Select Multiple Brands" formControlName="brandIds"  name="category" (change)="showCategory()" multiple required>
+                      <mat-option [value]="'cloths'">cloths</mat-option>
+                      <mat-option [value]="'watches'">watches</mat-option>
+                      <mat-option [value]="'pens'">pens</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="col-sm-4">
+                <mat-form-field>
+                  <mat-select placeholder="groups - 1" formControlName="groups"  name="category" (change)="showCategory()" multiple required>
                     <mat-option [value]="'cloths'">cloths</mat-option>
                     <mat-option [value]="'watches'">watches</mat-option>
                     <mat-option [value]="'pens'">pens</mat-option>
                   </mat-select>
                 </mat-form-field>
               </div>
-              <div>
-                <mat-form-field class="col-sm-4">
-                  <mat-select placeholder="Select gender" required>
-                    <mat-option value="topping">cloths</mat-option>
-                    <mat-option value="topping">watches</mat-option>
-                    <mat-option value="topping">pens</mat-option>
-                  </mat-select>
+            </div>
+            <div class="col-sm-12">
+              
+                <div class="col-sm-4">
+                  <mat-form-field>
+                    <mat-select placeholder="groups - 1" formControlName="groups"  name="category" (change)="showCategory()" multiple required>
+                      <mat-option [value]="'cloths'">cloths</mat-option>
+                      <mat-option [value]="'watches'">watches</mat-option>
+                      <mat-option [value]="'pens'">pens</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-sm-4">
+                  <mat-form-field>
+                    <mat-select placeholder="groups - 2" formControlName="groups"  name="category" (change)="showCategory()" multiple required>
+                      <mat-option [value]="'cloths'">cloths</mat-option>
+                      <mat-option [value]="'watches'">watches</mat-option>
+                      <mat-option [value]="'pens'">pens</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-sm-4">
+                  <mat-form-field>
+                    <mat-select placeholder="groups - 3" formControlName="groups"  name="category" (change)="showCategory()" multiple required>
+                      <mat-option [value]="'cloths'">cloths</mat-option>
+                      <mat-option [value]="'watches'">watches</mat-option>
+                      <mat-option [value]="'pens'">pens</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>                
+              </div>
+              <div class="col-sm-12">
+                <mat-form-field  class="col-sm-6"  [hideRequiredMarker]=false [floatLabel]="'auto'">
+                  <input matInput formControlName="termsAndConditions" placeholder="Enter offer T&C" required>
                 </mat-form-field>
               </div>
-            </div>
-            <div class="col-sm-12">
-              <div class="col-sm-4">
-                <button mat-button mat-raised-button	 color="primary"  (click)="addBrands()"> + ADD BRANDS</button>
-              </div>
-              <button mat-button mat-raised-button  *ngFor="let nub of numbers let i = index" style="margin:0.5px"	 color="primary"  (click)="addBrands()"> Brand{{nub}} <mat-icon  (click)="removeBrand(i)">cancel</mat-icon> </button>           
-            </div>
-            <div class="col-sm-12"><br></div>
-            <div class="col-sm-12">
-                <div>
-                  <button mat-button mat-raised-button  class="col-sm-5" color="defult" routerLink="../"> CANCLE</button>
+              <div class="col-sm-12">
+                <div class="col-sm-4">
+                  <mat-form-field>
+                    <mat-select placeholder="Select Multiple Final Categories" formControlName="finalCategoryIds" name="category" (change)="showCategory()" multiple required>
+                      <mat-option [value]="'cloths'">cloths</mat-option>
+                      <mat-option [value]="'watches'">watches</mat-option>
+                      <mat-option [value]="'pens'">pens</mat-option>
+                    </mat-select>
+                  </mat-form-field>
                 </div>
-                <div class="col-sm-1"></div>
-                <div>
-                    <button mat-button mat-raised-button class="col-sm-5"	 color="primary"> SUBMIT</button>
+              </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="col-sm-1">
+                    <button mat-button mat-raised-button color="primary"> SUBMIT</button>
+                  </div>
+                  <div class="col-sm-3">
+                    <button mat-button mat-raised-button color="primary"> CHECK FOR PRODUCTS</button>
                   </div>
               </div>
           </form>

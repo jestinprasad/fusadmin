@@ -106,4 +106,34 @@ export class FusadminService {
     const route = `brands?vendor=${data.vendorId}&markStore=${data.storeId}`;
     return this.api.get(environment.apiURL + route);
   }
+  uploadCardImage(data){ 
+    console.log(data);
+    const route = `store/cardImage/${data.storeId}`;
+    return this.api.put(environment.apiURL + route, data.brandCard);
+  }
+  uploadCardLogo(data){ 
+    console.log(data);
+    const route = `store/logoImages/${data.storeId}`;
+    return this.api.put(environment.apiURL + route, data.brandCard);
+  }
+  uploadCardImages(data){ 
+    console.log(data);
+    const route = `store/storeImages/${data.storeId}`;
+    return this.api.put(environment.apiURL + route, data.brandCard);
+  }
+  uploadBrandCardImage(data){ 
+    console.log(data);
+    const route = `brands/cardImage/${data.storeId}`;
+    return this.api.put(environment.apiURL + route, data.brandCard);
+  }
+  uploadBrandCardLogo(data){ 
+    console.log(data);
+    const route = `brands/logoImages/${data.storeId}`;
+    return this.api.put(environment.apiURL + route, data.brandCard);
+  }
+  uploadBrandCardImages(data){ 
+    console.log(data);
+    const route = `brands/logoImages/${data.storeId}`;
+    return this.api.put(environment.apiURL + route, data.brandCard);
+  }
 }

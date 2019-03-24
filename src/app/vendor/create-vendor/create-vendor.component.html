@@ -19,6 +19,8 @@
             <div>
               <mat-form-field class="col-sm-6" [hideRequiredMarker]=false [floatLabel]="'auto'">
                 <input matInput formControlName="name" placeholder="Enter Name" required>
+                <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                  <div *ngIf="f.name.errors.required">Name is required</div></div>
               </mat-form-field>
             </div>
             <div>

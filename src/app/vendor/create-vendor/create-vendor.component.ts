@@ -13,6 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./create-vendor.component.css']
 })
 export class CreateVendorComponent implements OnInit {
+  submitted = false;
   num: any;
   numbers = [];
   brands = [];
@@ -70,9 +71,19 @@ export class CreateVendorComponent implements OnInit {
       brands: [data ? data.brands : '', Validators.required]
     });
   }
+  get f() { return this.vendorForm.controls; }
+  
 
 
   onSubmit() {
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.vendorForm.invalid) {
+        return;
+    }
+
+    alert('SUCCESS!! :-)')
     console.log(this.vendorForm.value);
     if (this.form === 'Create') {
       this.fusAdminService.createVendor(this.vendorForm.value)

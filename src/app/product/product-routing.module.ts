@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { ProductListComponent } from './product-list/product-list.component';
 import { CreateProductComponent } from './create-product/create-product.component';
+import { BulkuploadComponent } from './bulkupload/bulkupload.component';
 
 
 
@@ -11,6 +12,9 @@ const routes: Routes = [{
 },
 {
   path: 'create', component: CreateProductComponent
+},
+{
+  path: 'bulkUpload', component: BulkuploadComponent
 }
 
 ];
