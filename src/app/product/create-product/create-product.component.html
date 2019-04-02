@@ -34,7 +34,8 @@
               <div class="col-sm-12">
                 <div>
                   <mat-form-field class="col-sm-6" [hideRequiredMarker]=false [floatLabel]="'auto'">
-                    <input matInput formControlName="productName" placeholder="Enter Product Name" required>
+                    <input matInput formControlName="productName" placeholder="Enter Product Name">
+                    <mat-error class="error-message">Enter Product Name</mat-error>
                   </mat-form-field>
                 </div>
                 <div>
@@ -50,6 +51,7 @@
                 <div>
                   <mat-form-field class="col-sm-6">
                     <input matInput formControlName="productDesc" placeholder="Enter Product Description Name">
+                    <mat-error class="error-message">Enter Product Description</mat-error>
                   </mat-form-field>
                 </div>
                 <div>
@@ -62,16 +64,19 @@
                       <mat-select placeholder="Select Category" formControlName="categoryId" required>
                           <mat-option *ngFor="let category of categories" [value]="category._id">{{category.displayName}}</mat-option>
                         </mat-select>
+                    <mat-error class="error-message">Select Category</mat-error>
                   </mat-form-field>
                   <mat-form-field class="col-sm-4">
                       <mat-select placeholder="Select Brands" formControlName="brandId" required>
                           <mat-option *ngFor="let brand of brands" [value]="brand._id">{{brand.displayName}}</mat-option>
                         </mat-select>
+                    <mat-error class="error-message">Select Brand</mat-error>
                   </mat-form-field>
                   <mat-form-field class="col-sm-4">
                       <mat-select placeholder="Select Final Category" formControlName="finalCategoryId" required>
                           <mat-option *ngFor="let finalCategory of finalCategories" [value]="finalCategory._id">{{finalCategory.displayName}}</mat-option>
                         </mat-select>
+                    <mat-error class="error-message">Select Final Category</mat-error>
                   </mat-form-field>
                 </div>
                 </div>

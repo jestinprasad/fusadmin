@@ -12,7 +12,8 @@
       <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
     </mat-card-header>
     <!-- <mat-divider></mat-divider> -->
-    <mat-card-content [formGroup]="brandForm">
+    <mat-card-content>
+      <form [formGroup]="brandForm" (ngSubmit)="onSubmit()">
       <div>
         <mat-card style="background-color:white">
           <mat-card-header>
@@ -33,7 +34,11 @@
               <div class="col-sm-12">
                 <div>
                   <mat-form-field class="col-sm-4" [hideRequiredMarker]=true [floatLabel]="'auto'">
-                    <input matInput placeholder="Enter Brand Name" formControlName="displayName" required>
+                    <input matInput placeholder="Enter Brand Name" formControlName="displayName">
+                    <!-- <mat-error *ngFor="let validation of validation_messages.displayName">
+                      <mat-error class="error-message" *ngIf="brandForm.get('displayName').hasError(validation.type) && (brandForm.get('displayName').pristine || brandForm.get('displayName').dirty || brandForm.get('displayName').touched)">{{validation.message}} </mat-error>
+                    </mat-error> -->
+                    <mat-error class="error-message">Enter Brand Name</mat-error>
                   </mat-form-field>
                 </div>
                 <div>
@@ -42,13 +47,23 @@
                   </mat-form-field>
                 </div>
                 <div>
+                    <mat-form-field class="col-sm-8">
+                      <input matInput placeholder="Enter Brand Description" formControlName="description">
+                    <mat-error class="error-message">Enter Brand Name</mat-error>
+                    </mat-form-field>
+                  </div>
+                <div>
                   <mat-form-field class="col-sm-4">
-                    <mat-select placeholder="Select Category" multiple  formControlName="categories" required>
+                    <mat-select placeholder="Select Category" multiple  formControlName="categories" >
                       <mat-option *ngFor="let category of categories" [value]="category._id">{{category.displayName}}</mat-option>
                     </mat-select>
+                    <!-- <mat-error *ngFor="let validation of validation_messages.categories">
+                      <mat-error class="error-message" *ngIf="brandForm.get('categories').(brandForm.get('categories').pristine || brandForm.get('categories').dirty || brandForm.get('categories').touched)">{{validation.message}} </mat-error>
+                    </mat-error> -->
+                    <mat-error class="error-message">Select Category</mat-error>
                   </mat-form-field>
                   <mat-form-field class="col-sm-4" [hideRequiredMarker]=false [floatLabel]="'auto'">
-                    <input matInput   formControlName="gstin" placeholder="Enter GSTIN" required>
+                    <input matInput   formControlName="gstin" placeholder="Enter GSTIN" >
                   </mat-form-field>
                 </div>
               </div>
@@ -129,25 +144,35 @@
               <div class="col-sm-12">
                 <div>
                   <mat-form-field class="col-sm-12" [hideRequiredMarker]=false [floatLabel]="'auto'">
-                    <input matInput placeholder="Enter Brand Head Office Postal Address" formControlName="addressString" required>
+                    <input matInput placeholder="Enter Brand Head Office Postal Address" formControlName="addressString">
+                    <!-- <mat-error *ngFor="let validation of validation_messages.addressString">
+                      <mat-error class="error-message" *ngIf="brandForm.get('addressString').hasError(validation.type) && (brandForm.get('addressString').pristine || brandForm.get('addressString').dirty || brandForm.get('addressString').touched)">{{validation.message}} </mat-error>
+                    </mat-error> -->
+                    <mat-error class="error-message">Enter Brand Head Office Address</mat-error>
                   </mat-form-field>
                 </div>
                 <br><br>
                 <mat-radio-group class="example-radio-group" (change)="valueChange()" formControlName="googleAddressType">
+                    <!-- <mat-error class="error-message">Select google address type</mat-error> -->
+
                   <mat-radio-button class="example-radio-button" color="primary"  value="1">
                     Google Address String
                   </mat-radio-button>
                   <mat-radio-button style="margin-left:3px" class="example-radio-button" color="primary" value="2">
                     Lat long
                   </mat-radio-button>
-                </mat-radio-group>
+                  <!-- <mat-error *ngFor="let validation of validation_messages.googleAddressType">
+                    <mat-error class="error-message" *ngIf="brandForm.get('googleAddressType').hasError(validation.type) && (brandForm.get('googleAddressType').pristine || brandForm.get('googleAddressType').dirty || brandForm.get('googleAddressType').touched)">{{validation.message}} </mat-error>
+                  </mat-error> -->
+                  </mat-radio-group>
+
                 <br>
                 <div *ngIf="exactAddress==='2'">
                   <mat-form-field class="col-sm-5" [hideRequiredMarker]=false [floatLabel]="'auto'">
-                    <input matInput placeholder="Enter Google Latitude" type="number"  formControlName="latitude" required>
+                    <input matInput placeholder="Enter Google Latitude" type="number"  formControlName="latitude" >
                   </mat-form-field>
                   <mat-form-field class="col-sm-5" [hideRequiredMarker]=false [floatLabel]="'auto'">
-                    <input matInput placeholder="Enter Google Longitude" type="number" formControlName="longitude" required>
+                    <input matInput placeholder="Enter Google Longitude" type="number" formControlName="longitude" >
                   </mat-form-field>
                 </div>
                 <div *ngIf="exactAddress==='1'">
@@ -157,23 +182,39 @@
                 <div>
                   <div class="col-sm-12">
                     <mat-form-field class="col-sm-3">
-                      <mat-select formControlName="countryId" placeholder="Countries" required>
+                      <mat-select formControlName="countryId" placeholder="Countries" >
                         <mat-option *ngFor="let con of country" [value]="con.id">{{con.name}}</mat-option>
                       </mat-select>
-                    </mat-form-field>
+                      <!-- <mat-error *ngFor="let validation of validation_messages.countryId">
+                        <mat-error class="error-message" *ngIf="brandForm.get('countryId').hasError(validation.type) && (brandForm.get('countryId').pristine || brandForm.get('countryId').dirty || brandForm.get('countryId').touched)">{{validation.message}} </mat-error>
+                      </mat-error> -->
+                    <mat-error class="error-message">Select Country</mat-error>
+                  </mat-form-field>
                     <mat-form-field class="col-sm-3">
-                      <mat-select formControlName="stateId" placeholder="State" required >
+                      <mat-select formControlName="stateId" placeholder="State"  >
                         <mat-option *ngFor="let state of states" [value]="state._id">{{state.name}}</mat-option>
                       </mat-select>
-                    </mat-form-field>
+                      <!-- <mat-error *ngFor="let validation of validation_messages.stateId">
+                        <mat-error class="error-message" *ngIf="brandForm.get('stateId').hasError(validation.type) && (brandForm.get('stateId').pristine || brandForm.get('stateId').dirty || brandForm.get('stateId').touched)">{{validation.message}} </mat-error>
+                      </mat-error> -->
+                    <mat-error class="error-message">Select State</mat-error>
+                  </mat-form-field>
                     <mat-form-field class="col-sm-3">
-                      <mat-select formControlName="cityId" placeholder="City" required>
+                      <mat-select formControlName="cityId" placeholder="City" >
                         <mat-option *ngFor="let city of cities" [value]="city._id">{{city.name}}</mat-option>
                       </mat-select>
-                    </mat-form-field>
+                      <!-- <mat-error *ngFor="let validation of validation_messages.cityId">
+                        <mat-error class="error-message" *ngIf="brandForm.get('cityId').hasError(validation.type) && (brandForm.get('cityId').pristine || brandForm.get('cityId').dirty || brandForm.get('cityId').touched)">{{validation.message}} </mat-error>
+                      </mat-error> -->
+                    <mat-error class="error-message">Select City</mat-error>
+                  </mat-form-field>
                     <mat-form-field class="col-sm-3" [hideRequiredMarker]=false [floatLabel]="'auto'">
-                      <input matInput formControlName="zipCode" placeholder="Enter Pincode" required>
-                    </mat-form-field>
+                      <input matInput formControlName="zipCode" placeholder="Enter Pincode" >
+                      <!-- <mat-error *ngFor="let validation of validation_messages.zipCode">
+                        <mat-error class="error-message" *ngIf="brandForm.get('zipCode').hasError(validation.type) && (brandForm.get('zipCode').pristine || brandForm.get('zipCode').dirty || brandForm.get('zipCode').touched)">{{validation.message}} </mat-error>
+                      </mat-error> -->
+                    <mat-error class="error-message">Enter Pincode</mat-error>
+                  </mat-form-field>
                   </div>
                   <div class="col-sm-12"><br><br></div>
                   <div class="col-sm-12">
@@ -183,7 +224,8 @@
                     </div>
                     <div class="col-sm-1"></div>
                     <div>
-                      <button mat-button mat-raised-button class="col-sm-5" color="primary" (click)="onSubmit()"> {{update?'UPDATE':'SUBMIT'}}</button>
+                      <!-- <button mat-button mat-raised-button class="col-sm-5" color="primary" (click)="onSubmit()"> {{update?'UPDATE':'SUBMIT'}}</button> -->
+                      <button mat-button mat-raised-button class="col-sm-5" [disabled]="!brandForm.valid" color="primary"> SUBMIT</button>
                     </div>
                   </div>
                 </div>
@@ -199,8 +241,7 @@
 
         </mat-card>
       </div>
-
-
+    </form>
     </mat-card-content>
     <!-- <mat-divider></mat-divider> -->
     <mat-card-actions>

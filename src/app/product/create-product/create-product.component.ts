@@ -43,9 +43,9 @@ export class CreateProductComponent implements OnInit {
       }),
       productName: ["", Validators.required],
       productDesc: ["", Validators.required],
-      productMrp: ["", Validators.required],
-      upcNum: ["", Validators.required],
-      keywordsString: ["", Validators.required]
+      productMrp: [""],
+      upcNum: [""],
+      keywordsString: [""]
     })
 
     this.productForm.get("categoryId").valueChanges.subscribe((res)=>{

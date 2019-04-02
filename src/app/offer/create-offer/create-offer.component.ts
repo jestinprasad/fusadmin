@@ -34,17 +34,17 @@ export class CreateOfferComponent implements OnInit {
   createOfferForm(){
     this.offerForm = this.fb.group({
       categoryId:["",[Validators.required]],
-      storeIds:[[],[Validators.required]],
+      storeIds:[[]],
       brandIds:[[],[Validators.required]],
-      finalCategoryIds:[[],[Validators.required]],
-      groups:[[],[Validators.required]],
+      finalCategoryIds:[[]],
+      groups:[[]],
       offerTitle:["",[Validators.required]],
       offer_Valididty: this.fb.group({
         fromTime: ["", [Validators.required]],
         toTime: ["", [Validators.required]]
       }),
       offerDesc:["",[Validators.required]],
-      termsAndConditions:["",[Validators.required]]      
+      termsAndConditions:[""]      
     })
   }
 

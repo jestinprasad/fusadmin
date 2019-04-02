@@ -34,13 +34,13 @@ export class CreateVendorComponent implements OnInit {
     private router: ActivatedRoute,
     private route: Router
   ) {
-    console.log('id', this.router.snapshot.params.id);
+    // console.log('id', this.router.snapshot.params.id);
     const id = this.router.snapshot.params.id;
     this.createForm();
     if (id) {
       this.form = 'Update';
       this.fusAdminService.getSingleVendor(id).subscribe((result: any) => {
-        console.log(result);
+        // console.log(result);
         this.vendorDetails = result.data;
         this.createForm(this.vendorDetails);
       });
@@ -54,24 +54,44 @@ export class CreateVendorComponent implements OnInit {
     this.commonService.getBrands()
       .subscribe((data: any) => {
         this.brands = data.data;
-        console.log(data);
+        // console.log(data);
       });
     this.commonService.getCategories().subscribe((data: any) => {
       this.categories = data.data;
-      console.log(data);
+      // console.log(data);
     });
   }
   createForm(data?) {
     this.vendorForm = this.fb.group({
       name: [data ? data.name : '', Validators.required],
-      email: [data ? data.email : '', Validators.required],
-      phone: [data ? data.phone : '', Validators.required],
+      email: [data ? data.email : '', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])],
+      phone: [data ? data.phone : '', Validators.compose([Validators.required])],
       gender: [data ? data.gender : '', Validators.required],
       categories: [data ? data.categories : '', Validators.required],
       brands: [data ? data.brands : '', Validators.required]
     });
   }
   get f() { return this.vendorForm.controls; }
+
+  validation_messages = {
+    'name': [
+      {type: 'required', message: 'Enter Vendor Name'}
+    ],
+    'email': [
+      {type: 'required', message: 'Enter Email'},
+      {type: 'pattern', message: 'Enter Valid Email'}
+
+    ],
+    'phone': [
+      {type: 'required', message: 'Enter Phone Number'}
+    ],
+    'categories': [
+      {type: 'required', message: 'Select Category'}
+    ],
+    'gender': [
+      {type: 'required', message: 'Select Gender'}
+    ]
+  }
   
 
 
@@ -84,17 +104,17 @@ export class CreateVendorComponent implements OnInit {
     }
 
     alert('SUCCESS!! :-)')
-    console.log(this.vendorForm.value);
+    // console.log(this.vendorForm.value);
     if (this.form === 'Create') {
       this.fusAdminService.createVendor(this.vendorForm.value)
         .subscribe(data => {
-          console.log('vendor created', data);
+          // console.log('vendor created', data);
           this.route.navigate(['./..'], {relativeTo: this.router});
         });
     } else {
       this.fusAdminService.updateVendor(this.vendorForm.value, this.router.snapshot.params.id)
       .subscribe(data => {
-        console.log('vendor Updated', data);
+        // console.log('vendor Updated', data);
         this.route.navigate(['./../..'], {relativeTo: this.router});
       });
     }
@@ -103,12 +123,13 @@ export class CreateVendorComponent implements OnInit {
 
 
 
-  // addBrands(brands) {
-  //   this.num = this.numbers.length > 0 ? this.numbers.length : 0;
-  //   this.numbers.push(this.num);
-  // }
+  addBrands(brands) {
+    this.num = this.numbers.length > 0 ? this.numbers.length : 0;
+    this.numbers.push(this.num);
+  }
   removeBrand(index) {
+    console.log(this.brands);
     this.vendorForm.get('brands').value.splice(index, 1);
-    console.log(this.vendorForm.get('brands'));
+    // console.log(this.vendorForm.get('brands'));
   }
 }

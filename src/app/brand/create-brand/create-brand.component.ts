@@ -58,12 +58,12 @@ export class CreateBrandComponent implements OnInit {
       this.cities= data.data;
     })
   }
-  createBrandForm(data?) {
+  createBrandForm(data: any = {}) {
     this.brandForm = this.fb.group({
-      displayName: [data.displayName?data.displayName:'', [Validators.required]],
+      displayName: [data.displayName?data.displayName:'', Validators.required],
       webUrl: [data.webUrl?data.webUrl:'', Validators.required],
       categories: [data.categories? data.categories:[], Validators.required],
-      gstin: [data.gstin?data.gstin:'', [Validators.required]],
+      gstin: [data.gstin?data.gstin:'', Validators.required],
       announcements: this.fb.group({
         message: [(data.announcements&&data.announcements.message)?data.announcements.message:''],
         scheduled: [(data.announcements&&data.announcements.scheduled)?data.announcements.scheduled:false, [Validators.required]],
@@ -71,18 +71,18 @@ export class CreateBrandComponent implements OnInit {
         toDate: [(data.announcements&&data.announcements.toDate)?data.announcements.toDate:'', [Validators.required]]
             }),
             headOfficeOrbillingAddress:this.fb.group({
-              googleAddressType: [(data.headOfficeOrbillingAddress&&data.headOfficeOrbillingAddress.googleAddressType)?data.headOfficeOrbillingAddress.googleAddressType.toString():'1'],
+              googleAddressType: [(data.headOfficeOrbillingAddress&&data.headOfficeOrbillingAddress.googleAddressType)?data.headOfficeOrbillingAddress.googleAddressType.toString():'1', Validators.required],
               addressString:[(data.headOfficeOrbillingAddress&&data.headOfficeOrbillingAddress.addressString)?data.headOfficeOrbillingAddress.addressString:''],
-              cityId:[(data.headOfficeOrbillingAddress&&data.headOfficeOrbillingAddress.cityId)?data.headOfficeOrbillingAddress.cityId : null],
-              stateId:[(data.headOfficeOrbillingAddress&&data.headOfficeOrbillingAddress.stateId)?data.headOfficeOrbillingAddress.stateId : null],
-              countryId:[(data.headOfficeOrbillingAddress&&data.headOfficeOrbillingAddress.countryId)?data.headOfficeOrbillingAddress.countryId : null],
-              googleAddressString:[(data.headOfficeOrbillingAddress&&data.headOfficeOrbillingAddress.googleAddressString)?data.headOfficeOrbillingAddress.googleAddressString : ''],
+              cityId:[(data.headOfficeOrbillingAddress&&data.headOfficeOrbillingAddress.cityId)?data.headOfficeOrbillingAddress.cityId : null, Validators.required],
+              stateId:[(data.headOfficeOrbillingAddress&&data.headOfficeOrbillingAddress.stateId)?data.headOfficeOrbillingAddress.stateId : null, Validators.required],
+              countryId:[(data.headOfficeOrbillingAddress&&data.headOfficeOrbillingAddress.countryId)?data.headOfficeOrbillingAddress.countryId : null, Validators.required],
+              googleAddressString:[(data.headOfficeOrbillingAddress&&data.headOfficeOrbillingAddress.googleAddressString)?data.headOfficeOrbillingAddress.googleAddressString : '', Validators.required],
               latitude:[(data.headOfficeOrbillingAddress&&data.headOfficeOrbillingAddress.latitude)?data.headOfficeOrbillingAddress.latitude : ''],
               longitude:[(data.headOfficeOrbillingAddress&&data.headOfficeOrbillingAddress.longitude)?data.headOfficeOrbillingAddress.longitude : ''],
               placeId:[(data.headOfficeOrbillingAddress&&data.headOfficeOrbillingAddress.placeId)?data.headOfficeOrbillingAddress.placeId : ''],
               zipCode: [(data.headOfficeOrbillingAddress&&data.headOfficeOrbillingAddress.zipCode)?data.headOfficeOrbillingAddress.zipCode : '', [Validators.required]]
             }),
-            description:[data.description?data.description:'']
+            description:[data.description?data.description:'', Validators.required]
     })
     this.formEnable = true;    
     this.exactAddress = (data.headOfficeOrbillingAddress&&data.headOfficeOrbillingAddress.googleAddressType)?data.headOfficeOrbillingAddress.googleAddressType.toString():'1';
@@ -104,6 +104,36 @@ export class CreateBrandComponent implements OnInit {
     }
 
   }
+
+  // validation_messages = {
+  //   'displayName': [
+  //     {type: 'required', message: 'Enter Brand Name'}
+  //   ],
+  //   'description': [
+  //     {type: 'required', message: 'Enter Description'}
+  //   ],
+  //   'categories': [
+  //     {type: 'required', message: 'Select Categories'}
+  //   ],
+  //   'googleAddressType': [
+  //     {type: 'required', message: 'Select Google Address'}
+  //   ],
+  //   'addressString': [
+  //     {type: 'required', message: 'Enter Brand Head Office Postal Address'}
+  //   ],
+  //   'countryId': [
+  //     {type: 'required', message: 'Select Country'}
+  //   ],
+  //   'stateId': [
+  //     {type: 'required', message: 'Selet State'}
+  //   ],
+  //   'cityId': [
+  //     {type: 'required', message: 'Selet City'}
+  //   ],
+  //   'zipCode': [
+  //     {type: 'required', message: 'Enter PinCode'}
+  //   ],
+  // }
 
   checkSchedule() {
     console.log(this.brandForm.get('announcements').get('scheduled').value);
