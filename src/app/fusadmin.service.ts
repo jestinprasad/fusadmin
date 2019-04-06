@@ -136,4 +136,21 @@ export class FusadminService {
     const route = `brands/logoImages/${data.storeId}`;
     return this.api.put(environment.apiURL + route, data.brandCard);
   }
+  getStoreDetails(id){
+    const route = `https://fusadmintest.groeitech.com/stores?minData=true&category=${id}`;
+    return this.api.get(route);
+  }
+  getBrandDetails(id){
+    const route = `https://fusadmintest.groeitech.com/brands?store=${id}`
+    return this.api.get(route);
+  }
+
+  getGroupOneData(id){
+    const route = `https://fusadmintest.groeitech.com/foundation/priorGroups?categoryId=${id}`;
+    return this.api.get(route);
+  }
+  getCommonFinalCat(id){
+    const route = `https://fusadmintest.groeitech.com/brands/getCommonFinalCat/?brands=${id}`
+    return this.api.get(route);
+  }
 }
