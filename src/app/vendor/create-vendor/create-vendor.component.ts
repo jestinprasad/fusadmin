@@ -51,11 +51,11 @@ export class CreateVendorComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.commonService.getBrands()
-      .subscribe((data: any) => {
-        this.brands = data.data;
-        // console.log(data);
-      });
+    // this.commonService.getBrands()
+    //   .subscribe((data: any) => {
+    //     this.brands = data.data;
+    //     // console.log(data);
+    //   });
     this.commonService.getCategories().subscribe((data: any) => {
       this.categories = data.data;
       // console.log(data);
@@ -70,6 +70,23 @@ export class CreateVendorComponent implements OnInit {
       categories: [data ? data.categories : '', Validators.required],
       brands: [data ? data.brands : '', Validators.required]
     });
+    this.vendorForm.get('categories').valueChanges.subscribe((res)=>{
+      console.log(res);
+      this.brands = [];
+      if(res.length >1){
+        this.commonService.getBrands()
+      .subscribe((data: any) => {
+        this.brands = data.data;
+        // console.log(data);
+      });
+      } else if (res.length == 1){
+        this.commonService.getBrandsById(res).subscribe((response)=>{
+        console.log(response.data);
+        this.brands = response.data;
+      })
+      }
+      
+    })
   }
   get f() { return this.vendorForm.controls; }
 
@@ -129,7 +146,11 @@ export class CreateVendorComponent implements OnInit {
   }
   removeBrand(index) {
     console.log(this.brands);
-    this.vendorForm.get('brands').value.splice(index, 1);
+    console.log(this.vendorForm.get('brands').value);
+    const data = this.vendorForm.get('brands').value;
+    data.splice(index, 1)
+    // const data = this.vendorForm.get('brands').value.splice(index, 1);
+    this.vendorForm.get('brands').patchValue(data);
     // console.log(this.vendorForm.get('brands'));
   }
 }

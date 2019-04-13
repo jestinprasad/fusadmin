@@ -5,7 +5,7 @@
     <mat-card-content>
         <mat-tab-group (selectedTabChange)="selectedTab($event)">
             <mat-tab label="PENDING"> 
-              <h3>Pending Customer Request</h3>
+              <h3>Pending Redeem Request</h3>
             <table class="table table-border">
               <thead>
                 <tr>
@@ -37,11 +37,11 @@
                       <mat-menu #menu="matMenu">
                         <button mat-menu-item (click)="inStock(request._id)">
                           <!-- <mat-icon>dialpad</mat-icon> -->
-                          <span>IN STOCK</span>
+                          <span>ACCEPTED</span>
                         </button>
                         <button mat-menu-item (click)="outOfStock(request._id)">
                           <!-- <mat-icon>notifications_off</mat-icon> -->
-                          <span>OUT OF STOCK</span>
+                          <span>REJECT LIST</span>
                         </button>
                       </mat-menu>
                     </td>
@@ -49,8 +49,8 @@
               </tbody>
             </table>
             </mat-tab>
-            <mat-tab label="IN STOCK">
-                <h3>In Stock Customer Request</h3> 
+            <mat-tab label="ACCEPTED">
+                <h3>Accepted Redeem Requests</h3> 
                 <table  class="table table-border">
                     <thead>
                       <tr>
@@ -78,8 +78,8 @@
                     </tbody>
                   </table>  
             </mat-tab>
-            <mat-tab label="OUT OF STOCK"> 
-              <h3>Out Of Stock Customer Request</h3>
+            <mat-tab label="REJECT LIST"> 
+              <h3>Rejected Redeem Request</h3>
                 <table  class="table table-border">
                     <thead>
                       <tr>

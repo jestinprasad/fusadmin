@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+  import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -18,6 +18,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ApiService } from './api.service';
 import { StorageService } from './storage.service';
 import { RouteGuardService } from './route-guard.service';
+// import { RedeemComponent } from './redeem/redeem.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { RouteGuardService } from './route-guard.service';
     RegisterComponent,
     ViewComponent,
     EditComponent,
-    LoginComponent
+    LoginComponent,
+    // RedeemComponent
   ],
   imports: [
     BrowserModule,

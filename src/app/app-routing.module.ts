@@ -69,6 +69,11 @@ const routes: Routes = [
     path: 'customerRequest',
     loadChildren: './customer-request/customer-request.module#CustomerRequestModule',
     // canLoad: [RouteGuardService]
+  },
+  {
+    path: 'redeem',
+    loadChildren: './redeem/redeem.module#RedeemModule',
+    // canLoad: [RouteGuardService]
   }
 ];
 
