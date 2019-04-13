@@ -58,37 +58,38 @@ export class CreateOfferComponent implements OnInit {
     this.isMultipleStore = false;
     this.isSingleBrand = false;
     this.isMultipleBrand = true;
-  }
-  singleBrandMultipleStore(){
-    this.isSingleStore = false;
-    this.isMultipleStore = true;
-    this.isSingleBrand = true;
-    this.isMultipleBrand = false;
-  }
-
-
-  createNewOffer(offerData){
-    const { value } = offerData;
-    // Object.assign(value)
-     console.log(value)
-  }
-
-  selectedCategory(selectedValue){
-    this.selectedId = selectedValue;
-    this.fusAdminService.getStoreDetails(selectedValue)
+    this.fusAdminService.getStoreDetails(this.selectedId)
     .subscribe(data => {
       this.storeValues = data.data;
     },
     error => {
       console.log(error)
     });
-    this.fusAdminService.getBrandDetails(selectedValue)
+  }
+  singleBrandMultipleStore(){
+    this.isSingleStore = false;
+    this.isMultipleStore = true;
+    this.isSingleBrand = true;
+    this.isMultipleBrand = false;
+    this.fusAdminService.getBrandDetails(this.selectedId)
     .subscribe(data => {
       this.brandValues = data.data;
     },
     error => {
       console.log(error)
     })
+  }
+
+
+  createNewOffer(offerData){
+    const { value } = offerData;
+     console.log(value)
+  }
+
+  selectedCategory(selectedValue){
+    this.selectedId = selectedValue;
+  
+    
     this.fusAdminService.getGroupOneData(selectedValue)
     .subscribe(data => {
       this.groupOneValues = data.data;
@@ -125,6 +126,20 @@ export class CreateOfferComponent implements OnInit {
     error => {
       console.log(error)
     });
+  }
+  selectedFinalCat;
+  selectedFinalCet(id){
+    this.selectedFinalCat = id;
+  }
+
+  getTableData(){
+    this.fusAdminService.getTableCat(this.selectedFinalCat, 1)
+    .subscribe(data =>{
+      console.log(data)
+    },
+    error => {
+      console.log(error)
+    })
   }
 
 }

@@ -8,7 +8,9 @@ import { ApiService } from './api.service';
   providedIn: 'root'
 })
 export class FusadminService {
-
+  brandId;
+  categoryId;
+  storeId;
   constructor(
     private api: ApiService
   ) { }
@@ -141,16 +143,23 @@ export class FusadminService {
     return this.api.get(route);
   }
   getBrandDetails(id){
-    const route = `https://fusadmintest.groeitech.com/brands?store=${id}`
+    this.storeId = id;
+    const route = `https://fusadmintest.groeitech.com/brands?category=${id}`
     return this.api.get(route);
   }
 
   getGroupOneData(id){
+    this.categoryId = id;
     const route = `https://fusadmintest.groeitech.com/foundation/priorGroups?categoryId=${id}`;
     return this.api.get(route);
   }
   getCommonFinalCat(id){
+    this.brandId = id;
     const route = `https://fusadmintest.groeitech.com/brands/getCommonFinalCat/?brands=${id}`
+    return this.api.get(route);
+  }
+  getTableCat(finalCategoryIds, id){
+    const route = `https://fusadmintest.groeitech.com/product/storeProduct/getCountOfStoreProducts?brandIds=${this.brandId}&categoryId=${this.categoryId}&finalCategoryIds=${finalCategoryIds}&groups=${id}&storeIds=${this.storeId}`
     return this.api.get(route);
   }
 }

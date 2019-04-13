@@ -132,7 +132,7 @@
                 <div class="col-sm-4">
                   <mat-form-field>
                     <mat-select placeholder="Select Multiple Final Categories" formControlName="finalCategoryIds" name="category" (change)="showCategory()" multiple >
-                      <mat-option *ngFor="let finalCategorie of finalCategories;"  [value]="finalCategorie._id">{{finalCategorie.displayName}}</mat-option>
+                      <mat-option *ngFor="let finalCategorie of finalCategories;" (change)="selectedFinalCet(finalCategorie._id)" [value]="finalCategorie._id">{{finalCategorie.displayName}}</mat-option>
                     </mat-select>
                   </mat-form-field>
                 </div>
@@ -143,7 +143,7 @@
                     <button mat-button mat-raised-button color="primary"> SUBMIT</button>
                   </div>
                   <div class="col-sm-3">
-                    <button mat-button mat-raised-button color="primary"> CHECK FOR PRODUCTS</button>
+                    <button type="button" (click)="getTableData()" mat-button mat-raised-button color="primary"> CHECK FOR PRODUCTS</button>
                   </div>
               </div>
           </form>
